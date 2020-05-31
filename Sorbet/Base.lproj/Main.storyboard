@@ -56,6 +56,7 @@
                                         </state>
                                         <connections>
                                             <action selector="actionSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YKn-yl-5ME"/>
+                                            <segue destination="CPD-D9-7pl" kind="show" id="f8V-HO-paU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -90,33 +91,50 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="138.61607142857142"/>
         </scene>
-        <!--Item 2-->
+        <!--Все-->
         <scene sceneID="wlM-HL-nD1">
             <objects>
-                <viewController id="Ag8-ZE-bAz" sceneMemberID="viewController">
+                <viewController id="Ag8-ZE-bAz" customClass="SorbetKolodaViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xNO-Ad-vAr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6Y-ls-67P" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="R6Y-ls-67P" firstAttribute="top" secondItem="7U7-LW-nuz" secondAttribute="top" id="5x3-PZ-aBA"/>
+                            <constraint firstItem="7U7-LW-nuz" firstAttribute="bottom" secondItem="R6Y-ls-67P" secondAttribute="bottom" id="DlC-8D-yR3"/>
+                            <constraint firstItem="R6Y-ls-67P" firstAttribute="leading" secondItem="7U7-LW-nuz" secondAttribute="leading" id="HYg-xM-PVT"/>
+                            <constraint firstItem="7U7-LW-nuz" firstAttribute="trailing" secondItem="R6Y-ls-67P" secondAttribute="trailing" id="R1q-Fe-nLb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7U7-LW-nuz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="dlE-Id-igF"/>
+                    <tabBarItem key="tabBarItem" title="Все" id="uWO-Fl-XZx"/>
+                    <navigationItem key="navigationItem" id="h0e-tc-6wh"/>
+                    <connections>
+                        <outlet property="kolodaView" destination="R6Y-ls-67P" id="xX7-Ab-3qo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PGO-Iq-iNg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="1854"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="1853.5714285714284"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="VhL-1k-bCB">
             <objects>
                 <tabBarController id="CPD-D9-7pl" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Dcg-UW-aMv"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0t9-ks-USt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Ag8-ZE-bAz" kind="relationship" relationship="viewControllers" id="gSx-fZ-MqY"/>
+                        <segue destination="Ag8-ZE-bAz" kind="relationship" relationship="viewControllers" id="Ffm-hY-UuW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NAh-mA-Rv4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

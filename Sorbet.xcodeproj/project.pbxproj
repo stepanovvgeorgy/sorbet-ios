@@ -15,6 +15,7 @@
 		D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3239735248454C500CD4A57 /* LaunchScreen.storyboard */; };
 		D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323973E2484603C00CD4A57 /* UITextField+Extension.swift */; };
 		D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397402484669D00CD4A57 /* SignUpTableViewController.swift */; };
+		D32397432484743B00CD4A57 /* SorbetKolodaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		D3239738248454C500CD4A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D323973E2484603C00CD4A57 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D32397402484669D00CD4A57 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
+		D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetKolodaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				D3239735248454C500CD4A57 /* LaunchScreen.storyboard */,
 				D3239738248454C500CD4A57 /* Info.plist */,
 				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
+				D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */,
 			);
 			path = Sorbet;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32397432484743B00CD4A57 /* SorbetKolodaViewController.swift in Sources */,
 				D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */,
 				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
