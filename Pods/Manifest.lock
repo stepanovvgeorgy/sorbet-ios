@@ -1,0 +1,34 @@
+PODS:
+  - Alamofire (5.0.0)
+  - Koloda (5.0.1):
+    - pop (~> 1.0)
+  - pop (1.0.12)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - SwiftyJSON (4.3.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
+  - Koloda (~> 5.0)
+  - SDWebImage (~> 5.0)
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Koloda
+    - pop
+    - SDWebImage
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 58ff2bfb8daaacaa233d5c36e37b10a5248f59b1
+  Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+
+PODFILE CHECKSUM: 4403f00344fe85c6293852ffb46e948931de857d
+
+COCOAPODS: 1.8.4

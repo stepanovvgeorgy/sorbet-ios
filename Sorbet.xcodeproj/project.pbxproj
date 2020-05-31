@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323972A248454C300CD4A57 /* AppDelegate.swift */; };
+		D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323972C248454C300CD4A57 /* SceneDelegate.swift */; };
+		D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323972E248454C300CD4A57 /* SignInViewController.swift */; };
+		D3239732248454C300CD4A57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3239730248454C300CD4A57 /* Main.storyboard */; };
+		D3239734248454C500CD4A57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3239733248454C500CD4A57 /* Assets.xcassets */; };
+		D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3239735248454C500CD4A57 /* LaunchScreen.storyboard */; };
+		D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323973E2484603C00CD4A57 /* UITextField+Extension.swift */; };
+		D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397402484669D00CD4A57 /* SignUpTableViewController.swift */; };
+		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		211766348B66E669EDC9BBEB /* Pods-Sorbet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sorbet.debug.xcconfig"; path = "Target Support Files/Pods-Sorbet/Pods-Sorbet.debug.xcconfig"; sourceTree = "<group>"; };
+		A315882D8A5236888DE309BB /* Pods-Sorbet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sorbet.release.xcconfig"; path = "Target Support Files/Pods-Sorbet/Pods-Sorbet.release.xcconfig"; sourceTree = "<group>"; };
+		C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sorbet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3239727248454C300CD4A57 /* Sorbet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sorbet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D323972A248454C300CD4A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D323972C248454C300CD4A57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D323972E248454C300CD4A57 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D3239731248454C300CD4A57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D3239733248454C500CD4A57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D3239736248454C500CD4A57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D3239738248454C500CD4A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D323973E2484603C00CD4A57 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		D32397402484669D00CD4A57 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D3239724248454C300CD4A57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26D5EE1B8EC5575F12233C2D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79FB572EAF21261824106BF4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				211766348B66E669EDC9BBEB /* Pods-Sorbet.debug.xcconfig */,
+				A315882D8A5236888DE309BB /* Pods-Sorbet.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D323971E248454C300CD4A57 = {
+			isa = PBXGroup;
+			children = (
+				D3239729248454C300CD4A57 /* Sorbet */,
+				D3239728248454C300CD4A57 /* Products */,
+				79FB572EAF21261824106BF4 /* Pods */,
+				26D5EE1B8EC5575F12233C2D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D3239728248454C300CD4A57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D3239727248454C300CD4A57 /* Sorbet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D3239729248454C300CD4A57 /* Sorbet */ = {
+			isa = PBXGroup;
+			children = (
+				D323972A248454C300CD4A57 /* AppDelegate.swift */,
+				D323972C248454C300CD4A57 /* SceneDelegate.swift */,
+				D323972E248454C300CD4A57 /* SignInViewController.swift */,
+				D32397402484669D00CD4A57 /* SignUpTableViewController.swift */,
+				D3239730248454C300CD4A57 /* Main.storyboard */,
+				D3239733248454C500CD4A57 /* Assets.xcassets */,
+				D3239735248454C500CD4A57 /* LaunchScreen.storyboard */,
+				D3239738248454C500CD4A57 /* Info.plist */,
+				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
+			);
+			path = Sorbet;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D3239726248454C300CD4A57 /* Sorbet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D323973B248454C500CD4A57 /* Build configuration list for PBXNativeTarget "Sorbet" */;
+			buildPhases = (
+				79ACAC4593909C689839D2D3 /* [CP] Check Pods Manifest.lock */,
+				D3239723248454C300CD4A57 /* Sources */,
+				D3239724248454C300CD4A57 /* Frameworks */,
+				D3239725248454C300CD4A57 /* Resources */,
+				ABF6A250C190D6935132FF83 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sorbet;
+			productName = Sorbet;
+			productReference = D3239727248454C300CD4A57 /* Sorbet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D323971F248454C300CD4A57 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Georgy Stepanov";
+				TargetAttributes = {
+					D3239726248454C300CD4A57 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = D3239722248454C300CD4A57 /* Build configuration list for PBXProject "Sorbet" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D323971E248454C300CD4A57;
+			productRefGroup = D3239728248454C300CD4A57 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D3239726248454C300CD4A57 /* Sorbet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D3239725248454C300CD4A57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */,
+				D3239734248454C500CD4A57 /* Assets.xcassets in Resources */,
+				D3239732248454C300CD4A57 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		79ACAC4593909C689839D2D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sorbet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABF6A250C190D6935132FF83 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sorbet/Pods-Sorbet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sorbet/Pods-Sorbet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sorbet/Pods-Sorbet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D3239723248454C300CD4A57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */,
+				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
+				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
+				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
+				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D3239730248454C300CD4A57 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3239731248454C300CD4A57 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D3239735248454C500CD4A57 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3239736248454C500CD4A57 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D3239739248454C500CD4A57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D323973A248454C500CD4A57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D323973C248454C500CD4A57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 211766348B66E669EDC9BBEB /* Pods-Sorbet.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTYZ3PY7TG;
+				INFOPLIST_FILE = Sorbet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = george.stepanovv.Sorbet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D323973D248454C500CD4A57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A315882D8A5236888DE309BB /* Pods-Sorbet.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTYZ3PY7TG;
+				INFOPLIST_FILE = Sorbet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = george.stepanovv.Sorbet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D3239722248454C300CD4A57 /* Build configuration list for PBXProject "Sorbet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3239739248454C500CD4A57 /* Debug */,
+				D323973A248454C500CD4A57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D323973B248454C500CD4A57 /* Build configuration list for PBXNativeTarget "Sorbet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D323973C248454C500CD4A57 /* Debug */,
+				D323973D248454C500CD4A57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D323971F248454C300CD4A57 /* Project object */;
+}
