@@ -106,22 +106,6 @@
             </objects>
             <point key="canvasLocation" x="138" y="1854"/>
         </scene>
-        <!--Item 1-->
-        <scene sceneID="Rkl-f2-si0">
-            <objects>
-                <viewController id="j27-4f-Nb7" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gXq-vb-GEo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="q66-1r-Bz4"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="yRW-MI-7xA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OVA-Tq-Dsk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1977" y="1854"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="VhL-1k-bCB">
             <objects>
@@ -132,7 +116,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="j27-4f-Nb7" kind="relationship" relationship="viewControllers" id="VGh-OU-9zI"/>
                         <segue destination="Ag8-ZE-bAz" kind="relationship" relationship="viewControllers" id="gSx-fZ-MqY"/>
                     </connections>
                 </tabBarController>
@@ -185,6 +168,11 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" textContentType="email"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="coB-Np-Zl0" id="lpa-eI-ZiT"/>
                                                     </connections>
@@ -211,6 +199,11 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" secureTextEntry="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="coB-Np-Zl0" id="Ilt-N0-7yQ"/>
                                                     </connections>
@@ -237,6 +230,11 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" secureTextEntry="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="coB-Np-Zl0" id="M6Z-tI-Cfa"/>
                                                     </connections>
@@ -263,6 +261,11 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="coB-Np-Zl0" id="aHD-uW-k1J"/>
                                                     </connections>
@@ -289,6 +292,11 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="join"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="coB-Np-Zl0" id="53e-Z0-Ukg"/>
                                                     </connections>

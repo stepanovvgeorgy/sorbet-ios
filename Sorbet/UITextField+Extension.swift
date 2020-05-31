@@ -23,4 +23,13 @@ extension UITextField {
         borderBottom.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         borderBottom.heightAnchor.constraint(equalToConstant: height!).isActive = true // Set Border-Strength
     }
+    
+    @IBInspectable var placeHolderColor: UIColor? {
+         get {
+             return self.placeHolderColor
+         }
+         set {
+             self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
+         }
+     }
 }
