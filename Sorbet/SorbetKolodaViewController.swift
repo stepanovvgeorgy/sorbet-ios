@@ -28,6 +28,8 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         koloda.reloadData()
+        
+        print("kolodaDidRunOutOfCards")
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {

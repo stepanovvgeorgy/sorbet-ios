@@ -96,12 +96,12 @@
             <objects>
                 <viewController id="Ag8-ZE-bAz" customClass="SorbetKolodaViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xNO-Ad-vAr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6Y-ls-67P" customClass="KolodaView" customModule="Koloda">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -113,7 +113,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7U7-LW-nuz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Все" id="uWO-Fl-XZx"/>
+                    <tabBarItem key="tabBarItem" title="Все" image="ice-creams" id="uWO-Fl-XZx"/>
                     <navigationItem key="navigationItem" id="h0e-tc-6wh"/>
                     <connections>
                         <outlet property="kolodaView" destination="R6Y-ls-67P" id="xX7-Ab-3qo"/>
@@ -128,10 +128,13 @@
             <objects>
                 <tabBarController id="CPD-D9-7pl" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Dcg-UW-aMv"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0t9-ks-USt">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="0t9-ks-USt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="Ag8-ZE-bAz" kind="relationship" relationship="viewControllers" id="Ffm-hY-UuW"/>
@@ -377,4 +380,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ice-creams" width="25" height="25"/>
+    </resources>
 </document>
