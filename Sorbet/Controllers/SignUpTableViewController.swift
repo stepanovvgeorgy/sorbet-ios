@@ -57,8 +57,7 @@ class SignUpTableViewController: UITableViewController {
                 let user = User(id: nil, token: nil, expiredDate: nil, avatar: nil, firstName: firstName, lastName: lastName, password: password, email: email)
                 
                 NetworkManager.shared.signUp(user: user, { (userID, token) in
-                    print(userID)
-                    print(token)
+                    Helper.shared.authFinished(fromViewController: self, userID: userID, token: token)
                 }) { (error) in
                     self.present(Helper.shared.showInfoAlert(title: "Упс...", message: error)!, animated: true, completion: nil)
                 }

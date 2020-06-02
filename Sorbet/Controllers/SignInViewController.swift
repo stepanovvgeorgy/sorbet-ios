@@ -35,14 +35,7 @@ class SignInViewController: UIViewController {
             let user = User(id: nil, token: nil, expiredDate: nil, avatar: nil, firstName: nil, lastName: nil, password: password, email: email)
             
             NetworkManager.shared.signIn(user: user, { (userID, token) in
-                
-                UserDefaults.standard.set(userID, forKey: "user_id")
-                UserDefaults.standard.set(token, forKey: "token")
-                
-                let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: "InnerTabBarController")
-                tabBarController?.modalPresentationStyle = .fullScreen
-                self.present(tabBarController!, animated: true)
-                
+                Helper.shared.authFinished(fromViewController: self, userID: userID, token: token)
             }) { (error) in
                 self.present(Helper.shared.showInfoAlert(title: "Ooops", message: error)!, animated: true, completion: nil)
             }

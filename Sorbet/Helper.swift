@@ -28,6 +28,16 @@ class Helper {
         }
     }
     
+    func authFinished(fromViewController: UIViewController, userID: Int, token: String) {
+        
+        UserDefaults.standard.set(userID, forKey: "user_id")
+        UserDefaults.standard.set(token, forKey: "token")
+        
+        let tabBarController = fromViewController.storyboard?.instantiateViewController(withIdentifier: "InnerTabBarController")
+        tabBarController?.modalPresentationStyle = .fullScreen
+        fromViewController.present(tabBarController!, animated: true)
+    }
+    
     func logout(_ completion: @escaping () -> ()) {
         UserDefaults.standard.removeObject(forKey: "token")
         UserDefaults.standard.removeObject(forKey: "user_id")
