@@ -40,14 +40,41 @@ class SignUpTableViewController: UITableViewController {
         navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(toSignInViewController(_:)))
         navigationItem.leftBarButtonItem = newBackButton
+        
     }
     
     func signUp() {
         
+        if let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let passwordRepeat = passwordRepeatTextField.text,
+            let firstName = firstNameTextField.text,
+            let lastName = lastNameTextField.text,
+        !email.isEmpty && !password.isEmpty && !passwordRepeat.isEmpty && !firstName.isEmpty && !lastName.isEmpty {
+            
+            if password == passwordRepeat {
+                
+                let user = User(id: nil, token: nil, expiredDate: nil, avatar: nil, firstName: firstName, lastName: lastName, password: password, email: email)
+                
+                NetworkManager.shared.signUp(user: user, { (userID, token) in
+                    print(userID)
+                    print(token)
+                }) { (error) in
+                    self.present(Helper.shared.showInfoAlert(title: "Упс...", message: error)!, animated: true, completion: nil)
+                }
+                
+            } else {
+                present(Helper.shared.showInfoAlert(title: "Миша, давай по новой!", message: "Пароли не совпадают!")!, animated: true, completion: nil)
+            }
+            
+        } else {
+            present(Helper.shared.showInfoAlert(title: "Миша, давай по новой!", message: "Заполни все поля!")!, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func actionSignUp(_ sender: UIBarButtonItem) {
-        
+        signUp()
     }
     
     @objc func toSignInViewController(_ sender: UIBarButtonItem) {

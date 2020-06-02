@@ -16,6 +16,11 @@
 		D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323973E2484603C00CD4A57 /* UITextField+Extension.swift */; };
 		D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397402484669D00CD4A57 /* SignUpTableViewController.swift */; };
 		D32397432484743B00CD4A57 /* SorbetKolodaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */; };
+		D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397462484E56700CD4A57 /* NetworkManager.swift */; };
+		D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397482484E7EA00CD4A57 /* SorbetKolodaView.swift */; };
+		D323974B2484E97600CD4A57 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323974A2484E97600CD4A57 /* Helper.swift */; };
+		D32397512485CD6600CD4A57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397502485CD6600CD4A57 /* User.swift */; };
+		D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397522485DDED00CD4A57 /* InnerTabBarController.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +39,11 @@
 		D323973E2484603C00CD4A57 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D32397402484669D00CD4A57 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
 		D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetKolodaViewController.swift; sourceTree = "<group>"; };
+		D32397462484E56700CD4A57 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D32397482484E7EA00CD4A57 /* SorbetKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetKolodaView.swift; sourceTree = "<group>"; };
+		D323974A2484E97600CD4A57 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D32397502485CD6600CD4A57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D32397522485DDED00CD4A57 /* InnerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,16 +98,53 @@
 			children = (
 				D323972A248454C300CD4A57 /* AppDelegate.swift */,
 				D323972C248454C300CD4A57 /* SceneDelegate.swift */,
-				D323972E248454C300CD4A57 /* SignInViewController.swift */,
-				D32397402484669D00CD4A57 /* SignUpTableViewController.swift */,
-				D3239730248454C300CD4A57 /* Main.storyboard */,
+				D32397462484E56700CD4A57 /* NetworkManager.swift */,
+				D323974A2484E97600CD4A57 /* Helper.swift */,
+				D323974E2485CD1200CD4A57 /* Views */,
+				D323974D2485CD0B00CD4A57 /* Models */,
+				D323974C2485CD0400CD4A57 /* Controllers */,
+				D323974F2485CD2F00CD4A57 /* Extensions */,
 				D3239733248454C500CD4A57 /* Assets.xcassets */,
-				D3239735248454C500CD4A57 /* LaunchScreen.storyboard */,
 				D3239738248454C500CD4A57 /* Info.plist */,
-				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
-				D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */,
 			);
 			path = Sorbet;
+			sourceTree = "<group>";
+		};
+		D323974C2485CD0400CD4A57 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D323972E248454C300CD4A57 /* SignInViewController.swift */,
+				D32397402484669D00CD4A57 /* SignUpTableViewController.swift */,
+				D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */,
+				D32397482484E7EA00CD4A57 /* SorbetKolodaView.swift */,
+				D32397522485DDED00CD4A57 /* InnerTabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D323974D2485CD0B00CD4A57 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D32397502485CD6600CD4A57 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D323974E2485CD1200CD4A57 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D3239730248454C300CD4A57 /* Main.storyboard */,
+				D3239735248454C500CD4A57 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D323974F2485CD2F00CD4A57 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,10 +263,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D32397432484743B00CD4A57 /* SorbetKolodaViewController.swift in Sources */,
+				D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */,
 				D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */,
 				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
+				D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
+				D323974B2484E97600CD4A57 /* Helper.swift in Sources */,
+				D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */,
 				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
+				D32397512485CD6600CD4A57 /* User.swift in Sources */,
 				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

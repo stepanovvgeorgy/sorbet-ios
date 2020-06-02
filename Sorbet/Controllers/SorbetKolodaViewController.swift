@@ -20,17 +20,16 @@ class SorbetKolodaViewController: UIViewController {
         
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+        modalTransitionStyle = .flipHorizontal
     }
     
+    @IBAction func actionKolodaUndo(_ sender: UIBarButtonItem) {
+        kolodaView.revertAction()
+    }
 }
 
 extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
-    
-    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        koloda.reloadData()
-        
-        print("kolodaDidRunOutOfCards")
-    }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
         return images.count
@@ -41,5 +40,11 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         view.layer.cornerRadius = 20
         view.clipsToBounds = true
         return view
+    }
+    
+    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        koloda.reloadData()
+        
+        print("kolodaDidRunOutOfCards")
     }
 }
