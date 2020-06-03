@@ -96,7 +96,47 @@ class NetworkManager {
                 }
             }
         }
-        
     }
     
+    func getUserByID(_ id: Int?, _ completion: @escaping (_ user: User?) -> (), _ failure: @escaping (_ error: String) -> ()) {
+     
+        if let userID = id {
+            
+            guard let url = URL(string: "\(serverUrl)/user/\(userID)") else {return}
+            
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                
+                switch response.result {
+                case .success(let value):
+                    let jsonData = JSON(value)
+                    
+                    print(jsonData)
+                    
+                    if response.response?.statusCode == 200 {
+      
+                        let user = User(id: jsonData["id"].intValue,
+                                        token: nil,
+                                        username: jsonData["username"].stringValue,
+                                        rating: jsonData["rating"].intValue,
+                                        expiredDate: nil,
+                                        avatar: jsonData["avatar"].stringValue,
+                                        firstName: jsonData["first_name"].stringValue,
+                                        lastName: jsonData["last_name"].stringValue,
+                                        password: nil,
+                                        email: nil)
+                        
+                        completion(user)
+                        
+                    } else {
+                        failure(jsonData["message"].stringValue)
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
+            }
+            
+        }
+    }
 }

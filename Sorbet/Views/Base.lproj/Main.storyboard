@@ -100,10 +100,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6Y-ls-67P" customClass="KolodaView" customModule="Koloda">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" white="0.17999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="R6Y-ls-67P" firstAttribute="leading" secondItem="7U7-LW-nuz" secondAttribute="leading" id="31f-hs-ITk"/>
                             <constraint firstItem="R6Y-ls-67P" firstAttribute="bottom" secondItem="7U7-LW-nuz" secondAttribute="bottom" id="4Ub-Eu-EX6"/>
@@ -144,17 +144,43 @@
             </objects>
             <point key="canvasLocation" x="2600" y="1879.6875"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="gjR-3c-PwJ">
             <objects>
-                <viewController id="c3L-a8-5i6" sceneMemberID="viewController">
+                <viewController id="c3L-a8-5i6" customClass="ProfileViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOv-wc-EEp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-MT-ayR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5rJ-Aq-Y6i">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="c3L-a8-5i6" id="can-r6-4B8"/>
+                                    <outlet property="delegate" destination="c3L-a8-5i6" id="3f3-Q7-jT0"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="OPB-Tr-WM3" firstAttribute="trailing" secondItem="w7E-MT-ayR" secondAttribute="trailing" id="7Cz-MI-Cg2"/>
+                            <constraint firstItem="w7E-MT-ayR" firstAttribute="top" secondItem="OPB-Tr-WM3" secondAttribute="top" id="P4M-ce-fRx"/>
+                            <constraint firstItem="w7E-MT-ayR" firstAttribute="leading" secondItem="OPB-Tr-WM3" secondAttribute="leading" id="PPa-pi-zW4"/>
+                            <constraint firstItem="OPB-Tr-WM3" firstAttribute="bottom" secondItem="w7E-MT-ayR" secondAttribute="bottom" id="a0h-Ao-eLq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="OPB-Tr-WM3"/>
                     </view>
                     <navigationItem key="navigationItem" id="MO8-wO-TRB"/>
+                    <connections>
+                        <outlet property="collectionView" destination="w7E-MT-ayR" id="5Q9-wp-ud6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZy-vF-a2x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -468,7 +494,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k0l-Fs-Sem">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

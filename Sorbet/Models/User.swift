@@ -11,6 +11,8 @@ import Foundation
 struct User {
     let id: Int?
     let token: String?
+    let username: String?
+    let rating: Int?
     let expiredDate: String?
     let avatar: String?
     let firstName: String?

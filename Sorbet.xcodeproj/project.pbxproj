@@ -21,6 +21,11 @@
 		D323974B2484E97600CD4A57 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323974A2484E97600CD4A57 /* Helper.swift */; };
 		D32397512485CD6600CD4A57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397502485CD6600CD4A57 /* User.swift */; };
 		D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397522485DDED00CD4A57 /* InnerTabBarController.swift */; };
+		D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397542487022900CD4A57 /* ProfileViewController.swift */; };
+		D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */; };
+		D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */; };
+		D33BE54324871DD0003C4499 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */; };
+		D33BE54424871DD0003C4499 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +49,11 @@
 		D323974A2484E97600CD4A57 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D32397502485CD6600CD4A57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D32397522485DDED00CD4A57 /* InnerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerTabBarController.swift; sourceTree = "<group>"; };
+		D32397542487022900CD4A57 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,7 @@
 				D323972C248454C300CD4A57 /* SceneDelegate.swift */,
 				D32397462484E56700CD4A57 /* NetworkManager.swift */,
 				D323974A2484E97600CD4A57 /* Helper.swift */,
+				D33BE540248717EE003C4499 /* Cells */,
 				D323974E2485CD1200CD4A57 /* Views */,
 				D323974D2485CD0B00CD4A57 /* Models */,
 				D323974C2485CD0400CD4A57 /* Controllers */,
@@ -118,6 +129,7 @@
 				D32397422484743B00CD4A57 /* SorbetKolodaViewController.swift */,
 				D32397482484E7EA00CD4A57 /* SorbetKolodaView.swift */,
 				D32397522485DDED00CD4A57 /* InnerTabBarController.swift */,
+				D32397542487022900CD4A57 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +157,17 @@
 				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D33BE540248717EE003C4499 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */,
+				D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */,
+				D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */,
+				D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */,
+				D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */,
 				D3239734248454C500CD4A57 /* Assets.xcassets in Resources */,
 				D3239732248454C300CD4A57 /* Main.storyboard in Resources */,
+				D33BE54424871DD0003C4499 /* ProfileCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,11 +293,14 @@
 				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
 				D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
+				D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */,
 				D323974B2484E97600CD4A57 /* Helper.swift in Sources */,
 				D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */,
 				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
+				D33BE54324871DD0003C4499 /* ProfileCollectionViewCell.swift in Sources */,
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,
 				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,
+				D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
