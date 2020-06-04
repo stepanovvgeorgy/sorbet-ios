@@ -17,6 +17,7 @@ struct User {
     let avatar: String?
     let firstName: String?
     let lastName: String?
+    let about: String?
     let password: String?
     let email: String?
 }

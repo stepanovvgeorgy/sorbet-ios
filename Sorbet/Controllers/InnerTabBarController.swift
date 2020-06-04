@@ -9,9 +9,23 @@
 import UIKit
 
 class InnerTabBarController: UITabBarController {
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            if traitCollection.userInterfaceStyle == .light {
+                return .darkContent
+            } else {
+                return .lightContent
+            }
+        } else {
+            return .lightContent
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        delegate = self
         
         if AppDelegate.iosVersion < 13.0 {
             
@@ -24,3 +38,15 @@ class InnerTabBarController: UITabBarController {
         
     }
 }
+
+
+//extension InnerTabBarController: UITabBarControllerDelegate {
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        if viewControllers!.firstIndex(of: viewController) == 1 {
+//            return false
+//        } else {
+//            return true
+//        }
+//    }
+//}
+

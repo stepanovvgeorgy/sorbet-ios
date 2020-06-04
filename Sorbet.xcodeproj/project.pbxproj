@@ -26,6 +26,17 @@
 		D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */; };
 		D33BE54324871DD0003C4499 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */; };
 		D33BE54424871DD0003C4499 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */; };
+		D33BE5492487D007003C4499 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE5482487D007003C4499 /* UIColor+Extension.swift */; };
+		D33BE54B2487D766003C4499 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54A2487D765003C4499 /* EditProfileViewController.swift */; };
+		D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54C2487D925003C4499 /* ChangeAvatarTableViewCell.swift */; };
+		D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54E2487D942003C4499 /* TextFieldTableViewCell.swift */; };
+		D33BE5512487EB06003C4499 /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE5502487EB06003C4499 /* ImageHandler.swift */; };
+		D33BE553248807ED003C4499 /* UIActivityIndicatorView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */; };
+		D33BE55524885DDE003C4499 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55424885DDE003C4499 /* NewPostViewController.swift */; };
+		D33BE55824885F28003C4499 /* NewPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */; };
+		D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */; };
+		D33BE55B24887456003C4499 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55A24887456003C4499 /* Post.swift */; };
+		D33BE55D24887494003C4499 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55C24887494003C4499 /* Meme.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +65,17 @@
 		D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		D33BE5482487D007003C4499 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D33BE54A2487D765003C4499 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D33BE54C2487D925003C4499 /* ChangeAvatarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarTableViewCell.swift; sourceTree = "<group>"; };
+		D33BE54E2487D942003C4499 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		D33BE5502487EB06003C4499 /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
+		D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extension.swift"; sourceTree = "<group>"; };
+		D33BE55424885DDE003C4499 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostCollectionViewCell.swift; sourceTree = "<group>"; };
+		D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostCollectionViewCell.xib; sourceTree = "<group>"; };
+		D33BE55A24887456003C4499 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D33BE55C24887494003C4499 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +132,7 @@
 				D323972C248454C300CD4A57 /* SceneDelegate.swift */,
 				D32397462484E56700CD4A57 /* NetworkManager.swift */,
 				D323974A2484E97600CD4A57 /* Helper.swift */,
+				D33BE5502487EB06003C4499 /* ImageHandler.swift */,
 				D33BE540248717EE003C4499 /* Cells */,
 				D323974E2485CD1200CD4A57 /* Views */,
 				D323974D2485CD0B00CD4A57 /* Models */,
@@ -130,6 +153,8 @@
 				D32397482484E7EA00CD4A57 /* SorbetKolodaView.swift */,
 				D32397522485DDED00CD4A57 /* InnerTabBarController.swift */,
 				D32397542487022900CD4A57 /* ProfileViewController.swift */,
+				D33BE54A2487D765003C4499 /* EditProfileViewController.swift */,
+				D33BE55424885DDE003C4499 /* NewPostViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -138,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				D32397502485CD6600CD4A57 /* User.swift */,
+				D33BE55A24887456003C4499 /* Post.swift */,
+				D33BE55C24887494003C4499 /* Meme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
+				D33BE5482487D007003C4499 /* UIColor+Extension.swift */,
+				D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,6 +195,10 @@
 				D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */,
 				D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */,
 				D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */,
+				D33BE54C2487D925003C4499 /* ChangeAvatarTableViewCell.swift */,
+				D33BE54E2487D942003C4499 /* TextFieldTableViewCell.swift */,
+				D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */,
+				D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -231,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */,
+				D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */,
 				D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */,
 				D3239734248454C500CD4A57 /* Assets.xcassets in Resources */,
 				D3239732248454C300CD4A57 /* Main.storyboard in Resources */,
@@ -287,18 +321,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33BE54B2487D766003C4499 /* EditProfileViewController.swift in Sources */,
+				D33BE55824885F28003C4499 /* NewPostCollectionViewCell.swift in Sources */,
+				D33BE553248807ED003C4499 /* UIActivityIndicatorView+Extension.swift in Sources */,
 				D32397432484743B00CD4A57 /* SorbetKolodaViewController.swift in Sources */,
 				D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */,
 				D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */,
 				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
 				D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
+				D33BE55D24887494003C4499 /* Meme.swift in Sources */,
 				D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */,
 				D323974B2484E97600CD4A57 /* Helper.swift in Sources */,
+				D33BE5512487EB06003C4499 /* ImageHandler.swift in Sources */,
+				D33BE55B24887456003C4499 /* Post.swift in Sources */,
 				D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */,
+				D33BE5492487D007003C4499 /* UIColor+Extension.swift in Sources */,
 				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
+				D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */,
 				D33BE54324871DD0003C4499 /* ProfileCollectionViewCell.swift in Sources */,
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,
+				D33BE55524885DDE003C4499 /* NewPostViewController.swift in Sources */,
+				D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */,
 				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,
 				D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */,
 			);

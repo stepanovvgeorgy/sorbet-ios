@@ -54,7 +54,7 @@ class SignUpTableViewController: UITableViewController {
             
             if password == passwordRepeat {
                 
-                let user = User(id: nil, token: nil, username: nil, rating: nil, expiredDate: nil, avatar: nil, firstName: firstName, lastName: lastName, password: password, email: email)
+                let user = User(id: nil, token: nil, username: nil, rating: nil, expiredDate: nil, avatar: nil, firstName: firstName, lastName: lastName, about: nil, password: password, email: email)
                 
                 NetworkManager.shared.signUp(user: user, { (userID, token) in
                     Helper.shared.authFinished(fromViewController: self, userID: userID, token: token)

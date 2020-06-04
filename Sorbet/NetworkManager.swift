@@ -16,6 +16,7 @@ class NetworkManager {
     
     let serverUrl = "http://192.168.1.5:4400/api"
     let uploadsUrl = "http://192.168.1.5:4400/uploads"
+    let avatarsUrl = "http://192.168.1.5:4400/avatars"
     
     var headers: HTTPHeaders {
         get {
@@ -119,9 +120,10 @@ class NetworkManager {
                                         username: jsonData["username"].stringValue,
                                         rating: jsonData["rating"].intValue,
                                         expiredDate: nil,
-                                        avatar: jsonData["avatar"].stringValue,
+                                        avatar: "\(self.avatarsUrl)/\(jsonData["avatar"].stringValue)",
                                         firstName: jsonData["first_name"].stringValue,
                                         lastName: jsonData["last_name"].stringValue,
+                                        about: jsonData["about"].stringValue,
                                         password: nil,
                                         email: nil)
                         
@@ -139,4 +141,78 @@ class NetworkManager {
             
         }
     }
+    
+    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping () -> ()) {
+        
+        let croppedImage = ImageHandler.shared.resizeImage(image: image, targetSize: resize ?? CGSize(width: 320, height: 240))
+        
+        guard let imageData = croppedImage.jpegData(compressionQuality: 0.9) else {return}
+        
+        AF.upload(multipartFormData: { (form) in
+            form.append(imageData, withName: "file_data", fileName: "\(Helper.shared.randomString(length: 7)).jpg", mimeType: "image/jpeg")
+            
+            let token = UserDefaults.standard.value(forKey: "token") as! String
+            
+            form.append((token as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: "token")
+            
+        }, to: "\(serverUrl)\(url)", method: .post).response { result in
+            completion()
+        }
+    }
+    
+    func updateUserProfile(user: User?, _ completion: @escaping () -> ()) {
+        if user != nil {
+            guard let url = URL(string: "\(serverUrl)/user/profile/update") else {return}
+            
+            let parameters: [String: Any] = [
+                "username": user?.username as Any,
+                "first_name": user?.firstName as Any,
+                "last_name": user?.lastName as Any,
+                "about": user?.about as Any
+            ]
+            
+            AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                  switch response.result {
+                  case .success(let value):
+                    
+                      let jsonData = JSON(value)
+                      
+                      print(jsonData)
+
+                      if response.response?.statusCode == 200 {
+                        print("Data was update")
+                        completion()
+                      }
+                      
+                  case .failure(let error):
+                      print(error.localizedDescription)
+                  }
+            }
+        }
+    }
+    
+    func getUserPostsByID(_ userID: Int, page: Int, limit: Int, _ completion: @escaping (_ posts: [Post], _ total: String) -> ()) {
+        
+        guard let url = URL(string: "\(NetworkManager.shared.serverUrl)/posts/\(userID)?page=\(page)&limit=\(limit)") else {
+            return
+        }
+        
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                
+                let jsonData = JSON(value)
+                
+                if response.response?.statusCode == 200 {
+                    print(jsonData)
+                } else {
+                    print(jsonData)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
 }
