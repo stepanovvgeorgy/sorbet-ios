@@ -8,10 +8,17 @@
 
 import Foundation
 
+enum PostType: Int {
+    case Single = 0
+    case Pun = 1
+    case Collection = 2
+}
+
 struct Post {
     let id: Int?
-    let type: Int?
+    let type: PostType?
     let text: String?
     let userID: Int?
     let memes: Array<Meme>?
+    let user: User?
 }

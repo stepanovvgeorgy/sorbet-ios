@@ -19,9 +19,7 @@ class ProfileViewController: UIViewController {
     var user: User? {
         didSet {
             navigationItem.title = "id\(user?.id ?? 0)"
-            collectionView.isHidden = false
-            activityIndicator.stopAnimating()
-            collectionView.reloadData()
+            self.getUserPosts(userID: user?.id)
         }
     }
     
@@ -31,7 +29,7 @@ class ProfileViewController: UIViewController {
     
     var cellsPerRow: Int = 3
     
-    var currentUserID = UserDefaults.standard.value(forKey: "user_id") as! Int
+    var userID: Int?
     
     var page: Int = 1
     var limit: Int = 15
@@ -41,9 +39,13 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if userID == nil {
+            userID = (UserDefaults.standard.value(forKey: "user_id") as! Int)
+        }
+        
         collectionView.isHidden = true
         
-        collectionView.register(UINib(nibName: "ProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: profileCellReuseIdentifier)
+        collectionView.register(UINib(nibName: "SingleMemeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: profileCellReuseIdentifier)
         collectionView.register(UINib(nibName: "ProfileHeaderCollectionViewCell", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellReuseIdentifier)
         
         view.addSubview(activityIndicator)
@@ -51,15 +53,14 @@ class ProfileViewController: UIViewController {
         activityIndicator.centerInView(view)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadVC(_:)), name: NSNotification.Name(rawValue: "NotificationUserProfileUpdated"), object: nil)
-                
-        getUserByID(currentUserID)
-        getUserPosts()
+        
+        getUserByID(userID!)
     }
     
     @objc func reloadVC(_ notification: Notification) {
         user = nil
         activityIndicator.startAnimating()
-        getUserByID(currentUserID)
+        getUserByID(userID!)
     }
 
     func getUserByID(_ id: Int) {
@@ -70,10 +71,17 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func getUserPosts() {
-        NetworkManager.shared.getUserPostsByID(currentUserID, page: page, limit: limit) { (posts, total) in
-            
+    func getUserPosts(userID: Int?) {
+        if let userID = userID {
+            NetworkManager.shared.getUserPostsByID(userID, page: page, limit: limit) { (posts, total) in
+                self.total = Int(total)
+                self.postsArray.append(contentsOf: posts)
+                self.collectionView.isHidden = false
+                self.activityIndicator.stopAnimating()
+                self.collectionView.reloadData()
+            }
         }
+    
     }
     
     override func viewWillLayoutSubviews() {
@@ -107,21 +115,62 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellReuseIdentifier, for: indexPath) as! ProfileCollectionViewCell
-                
+        let post = postsArray[indexPath.row]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellReuseIdentifier, for: indexPath) as! SingleMemeCollectionViewCell
+    
+        
+        if post.type == PostType.Single {
+
+            let singleMeme = post.memes![0]
+
+            guard let memeImageURL = URL(string: singleMeme.imageName!) else {return cell}
+
+            cell.memeImageView.sd_setImage(with: memeImageURL, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"), options: .forceTransition) { (image, error, cache, url) in
+                if error != nil {
+                    print(error?.localizedDescription as Any)
+                }
+            }
+
+        }
+                        
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToPostViewController" {
+            
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        collectionView.deselectItem(at: indexPath, animated: true)
+                
+        performSegue(withIdentifier: "SegueToPostViewController", sender: self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row > postsArray.count - 5 {
+            if postsArray.count < total! {
+                page = page + 1
+                getUserPosts(userID: user?.id)
+            } else {
+                print("All posts loaded")
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellReuseIdentifier, for: indexPath) as! ProfileHeaderCollectionViewCell
-                        
+
             headerCell.fullNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")\n\(user?.about ?? "")"
-            
+
             UIView.setAnimationsEnabled(false)
-            if user?.id == currentUserID {
+            if user?.id == userID {
                 headerCell.actionProfileButton.addTarget(self, action: #selector(presentEditProfileVC(_:)), for: .touchUpInside)
                 headerCell.actionProfileButton.setTitle("Редактировать профиль", for: .normal)
             } else {
@@ -131,29 +180,38 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             UIView.setAnimationsEnabled(true)
 
             headerCell.setNeedsLayout()
-            
+
             guard let avatarURL = URL(string: user?.avatar ?? "") else {return headerCell}
-            
+
             headerCell.avatarImageView.sd_setImage(with: avatarURL, placeholderImage: #imageLiteral(resourceName: "baby"), options: .highPriority) { (image, error, cache, url) in
                 self.userAvatarImage = image
             }
-            
+
             return headerCell
         default:
             return UICollectionReusableView()
         }
-        
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
                 
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        
+
         let totalSpace = flowLayout.sectionInset.left + flowLayout.sectionInset.right + (flowLayout.minimumInteritemSpacing * CGFloat(cellsPerRow - 1))
-        
+
         let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRow))
-        
+
         return CGSize(width: size, height: size)
+        
+//        let collectionViewFrame = collectionView.frame
+//
+//        let width = collectionViewFrame.width / CGFloat(cellsPerRow)
+//        let height = width
+//
+//        let spacing = CGFloat((cellsPerRow + 1)) * offset / CGFloat(cellsPerRow)
+//
+//        return CGSize(width: width - spacing, height: height - (offset * 2))
         
     }
     

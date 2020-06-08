@@ -24,8 +24,8 @@
 		D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397542487022900CD4A57 /* ProfileViewController.swift */; };
 		D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */; };
 		D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */; };
-		D33BE54324871DD0003C4499 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */; };
-		D33BE54424871DD0003C4499 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */; };
+		D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */; };
+		D33BE54424871DD0003C4499 /* SingleMemeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE54224871DD0003C4499 /* SingleMemeCollectionViewCell.xib */; };
 		D33BE5492487D007003C4499 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE5482487D007003C4499 /* UIColor+Extension.swift */; };
 		D33BE54B2487D766003C4499 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54A2487D765003C4499 /* EditProfileViewController.swift */; };
 		D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54C2487D925003C4499 /* ChangeAvatarTableViewCell.swift */; };
@@ -37,6 +37,14 @@
 		D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */; };
 		D33BE55B24887456003C4499 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55A24887456003C4499 /* Post.swift */; };
 		D33BE55D24887494003C4499 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55C24887494003C4499 /* Meme.swift */; };
+		D3785AF8248B14E60070B2BA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AF7248B14E60070B2BA /* PostViewController.swift */; };
+		D3785AFB248B19830070B2BA /* PostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */; };
+		D3785AFC248B19830070B2BA /* PostHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */; };
+		D3785AFF248B1CDE0070B2BA /* PostMemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AFD248B1CDE0070B2BA /* PostMemeTableViewCell.swift */; };
+		D3785B00248B1CDE0070B2BA /* PostMemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785AFE248B1CDE0070B2BA /* PostMemeTableViewCell.xib */; };
+		D3785B03248B246F0070B2BA /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */; };
+		D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */; };
+		D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,8 +71,8 @@
 		D32397542487022900CD4A57 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
-		D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
-		D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		D33BE54224871DD0003C4499 /* SingleMemeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleMemeCollectionViewCell.xib; sourceTree = "<group>"; };
 		D33BE5482487D007003C4499 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D33BE54A2487D765003C4499 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D33BE54C2487D925003C4499 /* ChangeAvatarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarTableViewCell.swift; sourceTree = "<group>"; };
@@ -76,6 +84,14 @@
 		D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		D33BE55A24887456003C4499 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D33BE55C24887494003C4499 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		D3785AF7248B14E60070B2BA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		D3785AFD248B1CDE0070B2BA /* PostMemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMemeTableViewCell.swift; sourceTree = "<group>"; };
+		D3785AFE248B1CDE0070B2BA /* PostMemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostMemeTableViewCell.xib; sourceTree = "<group>"; };
+		D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +171,7 @@
 				D32397542487022900CD4A57 /* ProfileViewController.swift */,
 				D33BE54A2487D765003C4499 /* EditProfileViewController.swift */,
 				D33BE55424885DDE003C4499 /* NewPostViewController.swift */,
+				D3785AF7248B14E60070B2BA /* PostViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -184,6 +201,7 @@
 				D323973E2484603C00CD4A57 /* UITextField+Extension.swift */,
 				D33BE5482487D007003C4499 /* UIColor+Extension.swift */,
 				D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */,
+				D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -193,12 +211,18 @@
 			children = (
 				D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */,
 				D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */,
-				D33BE54124871DD0003C4499 /* ProfileCollectionViewCell.swift */,
-				D33BE54224871DD0003C4499 /* ProfileCollectionViewCell.xib */,
+				D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */,
+				D33BE54224871DD0003C4499 /* SingleMemeCollectionViewCell.xib */,
 				D33BE54C2487D925003C4499 /* ChangeAvatarTableViewCell.swift */,
 				D33BE54E2487D942003C4499 /* TextFieldTableViewCell.swift */,
 				D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */,
 				D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */,
+				D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */,
+				D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */,
+				D3785AFD248B1CDE0070B2BA /* PostMemeTableViewCell.swift */,
+				D3785AFE248B1CDE0070B2BA /* PostMemeTableViewCell.xib */,
+				D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */,
+				D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -264,11 +288,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */,
+				D3785AFC248B19830070B2BA /* PostHeaderTableViewCell.xib in Resources */,
 				D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */,
 				D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */,
 				D3239734248454C500CD4A57 /* Assets.xcassets in Resources */,
 				D3239732248454C300CD4A57 /* Main.storyboard in Resources */,
-				D33BE54424871DD0003C4499 /* ProfileCollectionViewCell.xib in Resources */,
+				D33BE54424871DD0003C4499 /* SingleMemeCollectionViewCell.xib in Resources */,
+				D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */,
+				D3785B00248B1CDE0070B2BA /* PostMemeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,21 +352,26 @@
 				D33BE55824885F28003C4499 /* NewPostCollectionViewCell.swift in Sources */,
 				D33BE553248807ED003C4499 /* UIActivityIndicatorView+Extension.swift in Sources */,
 				D32397432484743B00CD4A57 /* SorbetKolodaViewController.swift in Sources */,
+				D3785AFB248B19830070B2BA /* PostHeaderTableViewCell.swift in Sources */,
+				D3785AF8248B14E60070B2BA /* PostViewController.swift in Sources */,
 				D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */,
 				D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */,
 				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
 				D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
+				D3785B03248B246F0070B2BA /* CommentTableViewCell.swift in Sources */,
 				D33BE55D24887494003C4499 /* Meme.swift in Sources */,
 				D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */,
+				D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */,
 				D323974B2484E97600CD4A57 /* Helper.swift in Sources */,
 				D33BE5512487EB06003C4499 /* ImageHandler.swift in Sources */,
 				D33BE55B24887456003C4499 /* Post.swift in Sources */,
+				D3785AFF248B1CDE0070B2BA /* PostMemeTableViewCell.swift in Sources */,
 				D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */,
 				D33BE5492487D007003C4499 /* UIColor+Extension.swift in Sources */,
 				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
 				D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */,
-				D33BE54324871DD0003C4499 /* ProfileCollectionViewCell.swift in Sources */,
+				D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */,
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,
 				D33BE55524885DDE003C4499 /* NewPostViewController.swift in Sources */,
 				D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */,

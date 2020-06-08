@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ProfileCollectionViewCell: UICollectionViewCell {
+class SingleMemeCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var memeImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

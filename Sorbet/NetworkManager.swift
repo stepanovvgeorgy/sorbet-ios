@@ -204,7 +204,49 @@ class NetworkManager {
                 let jsonData = JSON(value)
                 
                 if response.response?.statusCode == 200 {
-                    print(jsonData)
+                    
+                    var posts = Array<Post>()
+                    let totalCount = response.response?.headers["total"]
+
+                    jsonData.array!.forEach { (item) in
+        
+                        
+                        var memesArray = Array<Meme>()
+                        
+                        item["Memes"].array!.forEach { (memeItem) in
+                            let meme = Meme(id: memeItem["id"].intValue,
+                                            imageName: "\(self.uploadsUrl)/\(memeItem["image_name"].stringValue)",
+                                            postID: memeItem["PostId"].intValue)
+                            memesArray.append(meme)
+                        }
+                        
+                        let user = User(id: item["User"]["id"].intValue,
+                                        token: nil,
+                                        username: item["User"]["username"].stringValue,
+                                        rating: item["User"]["rating"].intValue,
+                                        expiredDate: nil,
+                                        avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
+                                        firstName: item["User"]["first_name"].stringValue,
+                                        lastName: item["User"]["first_name"].stringValue,
+                                        about: item["User"]["about"].stringValue,
+                                        password: nil,
+                                        email: nil)
+
+                        let post = Post(id: item["id"].intValue,
+                                        type: PostType(rawValue: item["type"].intValue),
+                                        text: item["text"].stringValue,
+                                        userID: item["UserId"].intValue,
+                                        memes: memesArray,
+                                        user: user)
+                        
+                        
+                        posts.append(post)
+                    }
+                    
+                    print(posts)
+                    
+                    completion(posts, totalCount!)
+                    
                 } else {
                     print(jsonData)
                 }
