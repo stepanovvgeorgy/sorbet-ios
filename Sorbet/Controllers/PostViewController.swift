@@ -42,6 +42,9 @@ class PostViewController: UIViewController {
         setTableViewBottomInsets(commentFormView.frame.height)
 
         keyboardNotification()
+        
+        // in the future
+        commentFormView.isHidden = true
     }
     
     @objc func hideKeyboard() {
@@ -105,15 +108,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 20
-        }
-        
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 64
+            return 0
         }
         
         return 0
@@ -122,24 +117,16 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 && indexPath.row == 0 {
-            return view.bounds.width
+            
+            if memeImage != nil {
+                let imageRatio = memeImage?.getImageRatio()
+                return tableView.frame.width / imageRatio!
+            }
         }
         
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        if section == 0 {
-            
-            let postHeaderViewCell = tableView.dequeueReusableCell(withIdentifier: postHeaderReuseIdentifier) as! PostHeaderTableViewCell
-            
-            return postHeaderViewCell
-            
-        }
-        
-        return nil
-    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -149,9 +136,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         
         memeCell.selectionStyle = .none
         
-        memeCell.memeImageView.image = #imageLiteral(resourceName: "6")
-        
-        commentCell.commentLabel.text = "where you set selectedImage and selectedLabel ? You can send the indexPath on the sender self.performSegueWithIdentifer(, sender: indexPath) or and then in prepareforsegue grab the element of the array with this indexpath. "
+        memeCell.memeImageView.image = memeImage
         
         if indexPath.section == 0 && indexPath.row == 0 {
         

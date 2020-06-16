@@ -45,6 +45,7 @@
 		D3785B03248B246F0070B2BA /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */; };
 		D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */; };
 		D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */; };
+		D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				D33BE5482487D007003C4499 /* UIColor+Extension.swift */,
 				D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */,
 				D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */,
+				D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,
 				D33BE55524885DDE003C4499 /* NewPostViewController.swift in Sources */,
 				D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */,
+				D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */,
 				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,
 				D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */,
 			);

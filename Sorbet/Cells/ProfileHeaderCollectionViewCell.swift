@@ -13,15 +13,23 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var actionProfileButton: UIButton!
+    @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var newPostButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         view.backgroundColor = .clear
         avatarImageView.layer.cornerRadius = 74/2
-        actionProfileButton.layer.borderWidth = 1.5
-        actionProfileButton.layer.borderColor = UIColor.color.sunFlower.cgColor
-        actionProfileButton.layer.cornerRadius = 4
+        setButtonBorder(subscribeButton)
+        setButtonBorder(newPostButton)
+    }
+    
+    private func setButtonBorder(_ button: UIButton?) {
+        if button != nil {
+            button!.layer.borderWidth = 1.5
+            button!.layer.borderColor = UIColor.color.sunFlower.cgColor
+            button!.layer.cornerRadius = 4
+        }
     }
     
 }

@@ -36,6 +36,9 @@ class ProfileViewController: UIViewController {
     var total: Int?
     var postsArray = Array<Post>()
     
+    var selectedPost: Post?
+    var selectedMemeImage: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,7 +93,7 @@ class ProfileViewController: UIViewController {
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = CGSize(width: view.bounds.width, height: 200)
     }
     
-    @objc func presentEditProfileVC(_ sender: UIButton?) {
+    @objc private func presentEditProfileVC(_ sender: UIButton?) {
         let editProfileNavController = storyboard?.instantiateViewController(withIdentifier: "EditProfileNavController") as! UINavigationController
         let editProfileViewController = editProfileNavController.viewControllers[0] as! EditProfileViewController
         editProfileViewController.user = user
@@ -102,13 +105,13 @@ class ProfileViewController: UIViewController {
         present(editProfileNavController, animated: true, completion: nil)
     }
     
-    @IBAction func actionMore(_ sender: UIBarButtonItem) {
+    @IBAction private func actionMore(_ sender: UIBarButtonItem) {
         
         let userName = (user?.firstName)! + " " + (user?.lastName)!
         
         let actionSheet = UIAlertController(title: nil, message: userName, preferredStyle: .actionSheet)
         
-        actionSheet.view.tintColor = UIColor.black
+        actionSheet.view.tintColor = UIColor.gray
         
         let editProfileAction = UIAlertAction(title: "Изменить профиль", style: .default) { (action) in
             self.presentEditProfileVC(nil)
@@ -120,7 +123,7 @@ class ProfileViewController: UIViewController {
             
             let alert = UIAlertController(title: "Выход", message: "Ты точно хочешь выйти?", preferredStyle: .alert)
             
-            alert.view.tintColor = .black
+            alert.view.tintColor = .gray
             
             let okAction = UIAlertAction(title: "Да", style: .default) { (action) in
                 Helper.shared.logout {
@@ -148,6 +151,26 @@ class ProfileViewController: UIViewController {
         present(actionSheet, animated: true, completion: nil)
         
     }
+    
+    @objc private func showNewPostActionSheet(_ sender: UIButton?) {
+        let actionSheet = UIAlertController(title: "Новая запись", message: "Что будем публиковать?", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Ничего", style: .cancel)
+        
+        let memeAction = UIAlertAction(title: "Just meme", style: .default) { (action) in
+            print("Posting meme")
+        }
+        
+        let jokeAction = UIAlertAction(title: "Каламбур", style: .default) { (action) in
+            print("Posting joke")
+        }
+        
+        actionSheet.addAction(memeAction)
+        actionSheet.addAction(jokeAction)
+        actionSheet.addAction(cancelAction)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -166,7 +189,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellReuseIdentifier, for: indexPath) as! SingleMemeCollectionViewCell
     
-        
         if post.type == PostType.Single {
 
             let singleMeme = post.memes![0]
@@ -186,7 +208,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToPostViewController" {
-            
+            if selectedPost != nil && selectedMemeImage != nil {
+                let postViewController = segue.destination as! PostViewController
+                postViewController.memeImage = selectedMemeImage!
+                postViewController.post = selectedPost!
+            }
         }
     }
     
@@ -194,6 +220,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         collectionView.deselectItem(at: indexPath, animated: true)
                 
+        selectedMemeImage = (collectionView.cellForItem(at: indexPath) as! SingleMemeCollectionViewCell).memeImageView.image
+        selectedPost = postsArray[indexPath.row]
+        
         performSegue(withIdentifier: "SegueToPostViewController", sender: self)
     }
     
@@ -213,20 +242,19 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellReuseIdentifier, for: indexPath) as! ProfileHeaderCollectionViewCell
+            
+            let currentUserID = UserDefaults.standard.value(forKey: "user_id") as! Int
+            
+            if user?.id == currentUserID {
+                headerCell.subscribeButton.isHidden = true
+                headerCell.newPostButton.isHidden = false
+                headerCell.newPostButton.addTarget(self, action: #selector(showNewPostActionSheet(_:)), for: .touchUpInside)
+            } else if user?.id != currentUserID  {
+                headerCell.subscribeButton.isHidden = false
+                headerCell.newPostButton.isHidden = true
+            }
 
             headerCell.fullNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")\n\(user?.about ?? "")"
-
-            UIView.setAnimationsEnabled(false)
-            if user?.id == userID {
-                headerCell.actionProfileButton.addTarget(self, action: #selector(presentEditProfileVC(_:)), for: .touchUpInside)
-                headerCell.actionProfileButton.setTitle("Редактировать профиль", for: .normal)
-            } else {
-                headerCell.actionProfileButton.setTitle("Подписаться", for: .normal)
-            }
-            headerCell.actionProfileButton.layoutIfNeeded()
-            UIView.setAnimationsEnabled(true)
-
-            headerCell.setNeedsLayout()
 
             guard let avatarURL = URL(string: user?.avatar ?? "") else {return headerCell}
 
@@ -250,16 +278,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRow))
 
         return CGSize(width: size, height: size)
-        
-//        let collectionViewFrame = collectionView.frame
-//
-//        let width = collectionViewFrame.width / CGFloat(cellsPerRow)
-//        let height = width
-//
-//        let spacing = CGFloat((cellsPerRow + 1)) * offset / CGFloat(cellsPerRow)
-//
-//        return CGSize(width: width - spacing, height: height - (offset * 2))
-        
     }
     
 }
