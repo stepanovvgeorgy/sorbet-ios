@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gab-Oy-uew">
                                 <rect key="frame" x="20" y="92" width="374" height="172"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="мояСОБАКАмаил.ру" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPt-5h-147">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPt-5h-147">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SKc-Eu-VNl"/>
@@ -37,7 +37,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="79t-OC-PRg"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="q1w2e3r4" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-aZ-ILQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-aZ-ILQ">
                                         <rect key="frame" x="0.0" y="65" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="g53-Ze-4wu"/>
@@ -51,7 +51,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNf-eT-sG0">
                                         <rect key="frame" x="0.0" y="130" width="374" height="42"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
-                                        <state key="normal" title="ВЗРЫВАЙ!">
+                                        <state key="normal" title="OK!">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -137,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-aa-6Uy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Wl7-Y0-HXz">
                                     <size key="itemSize" width="128" height="128"/>
@@ -168,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2H-uS-fFR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600" y="1879.6875"/>
+            <point key="canvasLocation" x="138" y="3019"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="gjR-3c-PwJ">
@@ -205,6 +205,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="MO8-wO-TRB">
                         <barButtonItem key="backBarButtonItem" title=" " id="jpA-5t-WtE"/>
+                        <barButtonItem key="rightBarButtonItem" image="more" id="brz-L1-lBu">
+                            <connections>
+                                <action selector="actionMore:" destination="c3L-a8-5i6" id="bDt-hm-mcI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="w7E-MT-ayR" id="5Q9-wp-ud6"/>
@@ -328,7 +333,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="k0s-dZ-HfX" kind="relationship" relationship="viewControllers" id="Ffm-hY-UuW"/>
-                        <segue destination="F1y-S7-D6a" kind="relationship" relationship="viewControllers" id="1jr-Wc-lFZ"/>
                         <segue destination="wtm-0P-0x0" kind="relationship" relationship="viewControllers" id="AjX-Mk-fwT"/>
                     </connections>
                 </tabBarController>
@@ -353,7 +357,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Свежее мясо" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="653-hh-PkB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="653-hh-PkB">
                                                     <rect key="frame" x="20" y="11" width="374" height="48"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="34"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -376,7 +380,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="мояСОБАКАмаил.ру" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4YD-JP-xYX">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4YD-JP-xYX">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
@@ -407,7 +411,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Супер strong пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2i-Fz-nDg">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2i-Fz-nDg">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
@@ -438,7 +442,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Повтори его!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-P3-08Y">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-P3-08Y">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
@@ -469,7 +473,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Василий" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NYj-pl-Ucj">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NYj-pl-Ucj">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
@@ -500,7 +504,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Сидоров" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEQ-5x-aqc">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEQ-5x-aqc">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
@@ -554,7 +558,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Xd8-NS-vyU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vsS-S9-5fw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="vsS-S9-5fw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7Cx-NM-SLz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -595,7 +599,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qpB-e2-Rln">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F1y-S7-D6a" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="F1y-S7-D6a" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="new" id="IrM-wJ-AEr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="D28-0h-AoF">
@@ -613,7 +617,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MTO-df-j8N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689.8550724637682" y="1879.6875"/>
+            <point key="canvasLocation" x="-771" y="3019"/>
         </scene>
         <!--Изменить профиль-->
         <scene sceneID="FSC-Rn-UGJ">
@@ -798,6 +802,7 @@
     <resources>
         <image name="baby" width="512" height="512"/>
         <image name="icecream" width="25" height="25"/>
+        <image name="more" width="25" height="25"/>
         <image name="new" width="25" height="25"/>
         <image name="return" width="25" height="25"/>
         <image name="user" width="25" height="25"/>

@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController {
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize = CGSize(width: view.bounds.width, height: 200)
     }
     
-    @objc func presentEditProfileVC(_ sender: UIButton) {
+    @objc func presentEditProfileVC(_ sender: UIButton?) {
         let editProfileNavController = storyboard?.instantiateViewController(withIdentifier: "EditProfileNavController") as! UINavigationController
         let editProfileViewController = editProfileNavController.viewControllers[0] as! EditProfileViewController
         editProfileViewController.user = user
@@ -100,6 +100,53 @@ class ProfileViewController: UIViewController {
         }
         
         present(editProfileNavController, animated: true, completion: nil)
+    }
+    
+    @IBAction func actionMore(_ sender: UIBarButtonItem) {
+        
+        let userName = (user?.firstName)! + " " + (user?.lastName)!
+        
+        let actionSheet = UIAlertController(title: nil, message: userName, preferredStyle: .actionSheet)
+        
+        actionSheet.view.tintColor = UIColor.black
+        
+        let editProfileAction = UIAlertAction(title: "Изменить профиль", style: .default) { (action) in
+            self.presentEditProfileVC(nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        
+        let logoutAction = UIAlertAction(title: "Выйти из аккаунта", style: .default) { (action) in
+            
+            let alert = UIAlertController(title: "Выход", message: "Ты точно хочешь выйти?", preferredStyle: .alert)
+            
+            alert.view.tintColor = .black
+            
+            let okAction = UIAlertAction(title: "Да", style: .default) { (action) in
+                Helper.shared.logout {
+                    let signInNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "SignInNavigationController")
+                    signInNavigationController?.modalPresentationStyle = .fullScreen
+                    self.present(signInNavigationController!, animated: true) {
+                        print("logout has been done")
+                    }
+                }
+            }
+            
+            let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action) in
+                
+            }
+            
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+     
+        actionSheet.addAction(editProfileAction)
+        actionSheet.addAction(logoutAction)
+        actionSheet.addAction(cancelAction)
+        
+        present(actionSheet, animated: true, completion: nil)
+        
     }
 }
 

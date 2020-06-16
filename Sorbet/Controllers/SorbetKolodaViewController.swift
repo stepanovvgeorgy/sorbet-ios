@@ -13,7 +13,7 @@ class SorbetKolodaViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: KolodaView!
     
-    var images = ["1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"]
+    var images = ["3.jpg", "4.jpg", "1.png", "2.jpg", "5.jpg", "6.jpg"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

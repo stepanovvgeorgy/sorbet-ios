@@ -14,9 +14,9 @@ class NetworkManager {
     
     static let shared: NetworkManager = NetworkManager()
     
-    let serverUrl = "http://192.168.1.5:4400/api"
-    let uploadsUrl = "http://192.168.1.5:4400/uploads"
-    let avatarsUrl = "http://192.168.1.5:4400/avatars"
+    let serverUrl = "http://localhost:4400/api"
+    let uploadsUrl = "http://localhost:4400/uploads"
+    let avatarsUrl = "http://localhost:4400/avatars"
     
     var headers: HTTPHeaders {
         get {
