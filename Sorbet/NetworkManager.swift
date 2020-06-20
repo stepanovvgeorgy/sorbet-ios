@@ -142,7 +142,7 @@ class NetworkManager {
         }
     }
     
-    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping () -> ()) {
+    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping (_ post: Post?) -> ()) {
         
         let croppedImage = ImageHandler.shared.resizeImage(image: image, targetSize: resize ?? CGSize(width: 320, height: 240))
         
@@ -156,7 +156,33 @@ class NetworkManager {
             form.append((token as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: "token")
             
         }, to: "\(serverUrl)\(url)", method: .post).response { result in
-            completion()
+            
+            let jsonData = JSON(result.data as Any)
+                        
+            var memesArray = Array<Meme>()
+            
+            jsonData["Memes"].array?.forEach({ (item) in
+                let meme = Meme(id: item["id"].intValue,
+                                imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
+                                postID: item["PostId"].intValue)
+                memesArray.append(meme)
+            })
+            
+            let user = User(id: jsonData["User"]["id"].intValue,
+                            token: nil,
+                            username: jsonData["User"]["username"].stringValue,
+                            rating: jsonData["User"]["rating"].intValue,
+                            expiredDate: nil,
+                            avatar: "\(self.avatarsUrl)/\(jsonData["User"]["avatar"].stringValue)",
+                            firstName: jsonData["User"]["first_name"].stringValue,
+                            lastName: jsonData["User"]["first_name"].stringValue,
+                            about: jsonData["User"]["about"].stringValue,
+                            password: nil,
+                            email: nil)
+            
+            let post = Post(id: jsonData["id"].intValue, type: PostType(rawValue: jsonData["type"].intValue), text: jsonData["text"].stringValue, userID: jsonData["UserId"].intValue, memes: memesArray, user: user)
+                        
+            completion(post)
         }
     }
     

@@ -798,6 +798,77 @@
             </objects>
             <point key="canvasLocation" x="3779.7101449275365" y="1879.6875"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="O16-ab-zKV">
+            <objects>
+                <navigationController storyboardIdentifier="JokeEditorNavigationController" id="ltt-xB-aRO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="BNO-Nh-ttb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cqK-pb-iXM" kind="relationship" relationship="rootViewController" id="wSU-VZ-KFV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a9a-DG-MuR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="2289"/>
+        </scene>
+        <!--Joke Editor View Controller-->
+        <scene sceneID="aoj-TX-34h">
+            <objects>
+                <viewController id="cqK-pb-iXM" customClass="JokeEditorViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9QS-if-3cC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="voo-Xg-arK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cqK-pb-iXM" id="V4s-xS-lEN"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="voo-Xg-arK" firstAttribute="top" secondItem="8iI-Qd-TSp" secondAttribute="top" id="FHK-qA-wri"/>
+                            <constraint firstItem="voo-Xg-arK" firstAttribute="leading" secondItem="8iI-Qd-TSp" secondAttribute="leading" id="n6A-0s-O7L"/>
+                            <constraint firstItem="8iI-Qd-TSp" firstAttribute="bottom" secondItem="voo-Xg-arK" secondAttribute="bottom" id="xdr-cp-HeH"/>
+                            <constraint firstItem="8iI-Qd-TSp" firstAttribute="trailing" secondItem="voo-Xg-arK" secondAttribute="trailing" id="zEH-in-mPO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8iI-Qd-TSp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TMh-xt-AJH">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="9ln-vA-rA4">
+                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actionDismiss:" destination="cqK-pb-iXM" id="IGq-Uz-3MZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="send" id="deu-cb-TKP">
+                            <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="actionPublish:" destination="cqK-pb-iXM" id="jQ3-y3-ZEe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="publishBarButtonItem" destination="deu-cb-TKP" id="7a4-EW-0Be"/>
+                        <outlet property="textView" destination="voo-Xg-arK" id="UnM-RC-CKI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p9G-2e-XiR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2652" y="2288"/>
+        </scene>
     </scenes>
     <resources>
         <image name="baby" width="512" height="512"/>
@@ -805,6 +876,7 @@
         <image name="more" width="25" height="25"/>
         <image name="new" width="25" height="25"/>
         <image name="return" width="25" height="25"/>
+        <image name="send" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
     </resources>
 </document>

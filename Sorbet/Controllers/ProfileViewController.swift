@@ -25,6 +25,8 @@ class ProfileViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.indicator
     
+    var imagePicker: UIImagePickerController = UIImagePickerController()
+    
     var userAvatarImage: UIImage?
     
     var cellsPerRow: Int = 3
@@ -45,6 +47,9 @@ class ProfileViewController: UIViewController {
         if userID == nil {
             userID = (UserDefaults.standard.value(forKey: "user_id") as! Int)
         }
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
         collectionView.isHidden = true
         
@@ -110,9 +115,7 @@ class ProfileViewController: UIViewController {
         let userName = (user?.firstName)! + " " + (user?.lastName)!
         
         let actionSheet = UIAlertController(title: nil, message: userName, preferredStyle: .actionSheet)
-        
-        actionSheet.view.tintColor = UIColor.gray
-        
+                
         let editProfileAction = UIAlertAction(title: "Изменить профиль", style: .default) { (action) in
             self.presentEditProfileVC(nil)
         }
@@ -122,9 +125,7 @@ class ProfileViewController: UIViewController {
         let logoutAction = UIAlertAction(title: "Выйти из аккаунта", style: .default) { (action) in
             
             let alert = UIAlertController(title: "Выход", message: "Ты точно хочешь выйти?", preferredStyle: .alert)
-            
-            alert.view.tintColor = .gray
-            
+                        
             let okAction = UIAlertAction(title: "Да", style: .default) { (action) in
                 Helper.shared.logout {
                     let signInNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "SignInNavigationController")
@@ -153,16 +154,16 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func showNewPostActionSheet(_ sender: UIButton?) {
-        let actionSheet = UIAlertController(title: "Новая запись", message: "Что будем публиковать?", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: nil, message: "Что будем публиковать?", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Ничего", style: .cancel)
         
         let memeAction = UIAlertAction(title: "Just meme", style: .default) { (action) in
-            print("Posting meme")
+            self.present(self.imagePicker, animated: true, completion: nil)
         }
         
         let jokeAction = UIAlertAction(title: "Каламбур", style: .default) { (action) in
-            print("Posting joke")
+            self.presentJokeEditor(action)
         }
         
         actionSheet.addAction(memeAction)
@@ -170,6 +171,11 @@ class ProfileViewController: UIViewController {
         actionSheet.addAction(cancelAction)
         
         present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @objc private func presentJokeEditor(_ sender: Any?) {
+        let jokeEditorNavController = storyboard?.instantiateViewController(withIdentifier: "JokeEditorNavigationController")
+        present(jokeEditorNavController!, animated: true, completion: nil)
     }
 }
 
@@ -280,4 +286,27 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: size, height: size)
     }
     
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+
+        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: CGSize(width: 1024, height: 769)) { (newPost) in
+            picker.dismiss(animated: true) {
+                if let post = newPost {
+                    
+                    print(post)
+                                        
+                    self.postsArray.insert(post, at: 0)
+                    
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    
+                    self.collectionView.insertItems(at: [indexPath])
+                                                            
+                }
+            }
+        }
+    }
 }

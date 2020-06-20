@@ -145,7 +145,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
         
-        NetworkManager.shared.uploadImage(url: "/avatar/upload", image, resize: CGSize(width: 80, height: 80), compressionQuality: 0.1) {
+        NetworkManager.shared.uploadImage(url: "/avatar/upload", image, resize: CGSize(width: 80, height: 80), compressionQuality: 0.1) {_ in 
             self.sendNotificationUserProfileUpdated()
             self.imageFromPicker = image
             picker.dismiss(animated: true, completion: nil)

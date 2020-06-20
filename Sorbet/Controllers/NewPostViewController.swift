@@ -93,7 +93,7 @@ extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
                 
-        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: CGSize(width: 1024, height: 768), compressionQuality: 0) {
+        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: CGSize(width: 1024, height: 768), compressionQuality: 0) { _ in
             picker.dismiss(animated: true) {
                 print("Meme added")
             }

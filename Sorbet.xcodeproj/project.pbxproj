@@ -46,6 +46,7 @@
 		D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */; };
 		D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */; };
 		D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */; };
+		D3F27F61249D07310077897D /* JokeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F27F60249D07310077897D /* JokeEditorViewController.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		D3F27F60249D07310077897D /* JokeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				D33BE54A2487D765003C4499 /* EditProfileViewController.swift */,
 				D33BE55424885DDE003C4499 /* NewPostViewController.swift */,
 				D3785AF7248B14E60070B2BA /* PostViewController.swift */,
+				D3F27F60249D07310077897D /* JokeEditorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */,
 				D323974B2484E97600CD4A57 /* Helper.swift in Sources */,
 				D33BE5512487EB06003C4499 /* ImageHandler.swift in Sources */,
+				D3F27F61249D07310077897D /* JokeEditorViewController.swift in Sources */,
 				D33BE55B24887456003C4499 /* Post.swift in Sources */,
 				D3785AFF248B1CDE0070B2BA /* PostMemeTableViewCell.swift in Sources */,
 				D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */,
