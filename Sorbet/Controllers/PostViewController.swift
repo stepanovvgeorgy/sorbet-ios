@@ -18,7 +18,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var commentFormView: UIView!
     @IBOutlet weak var commentFormViewBottomConstraint: NSLayoutConstraint!
     
-    var post: Post?
     var user: User?
     var memeImage: UIImage?
     

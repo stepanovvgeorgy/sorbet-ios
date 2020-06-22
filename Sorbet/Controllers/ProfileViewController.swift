@@ -19,7 +19,9 @@ class ProfileViewController: UIViewController {
     var user: User? {
         didSet {
             navigationItem.title = "id\(user?.id ?? 0)"
-            self.getUserPosts(userID: user?.id)
+            activityIndicator.stopAnimating()
+            collectionView.reloadData()
+            collectionView.isHidden = false
         }
     }
     
@@ -36,9 +38,7 @@ class ProfileViewController: UIViewController {
     var page: Int = 1
     var limit: Int = 15
     var total: Int?
-    var postsArray = Array<Post>()
     
-    var selectedPost: Post?
     var selectedMemeImage: UIImage?
     
     override func viewDidLoad() {
@@ -79,18 +79,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func getUserPosts(userID: Int?) {
-        if let userID = userID {
-            NetworkManager.shared.getUserPostsByID(userID, page: page, limit: limit) { (posts, total) in
-                self.total = Int(total)
-                self.postsArray.append(contentsOf: posts)
-                self.collectionView.isHidden = false
-                self.activityIndicator.stopAnimating()
-                self.collectionView.reloadData()
-            }
-        }
-    
-    }
     
     override func viewWillLayoutSubviews() {
         /* https://stackoverflow.com/questions/13191480/collectionviewviewforsupplementaryelementofkindatindexpath-called-only-with-u */
@@ -186,39 +174,20 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postsArray.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let post = postsArray[indexPath.row]
-        
+                
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellReuseIdentifier, for: indexPath) as! SingleMemeCollectionViewCell
     
-        if post.type == PostType.Single {
-
-            let singleMeme = post.memes![0]
-
-            guard let memeImageURL = URL(string: singleMeme.imageName!) else {return cell}
-
-            cell.memeImageView.sd_setImage(with: memeImageURL, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"), options: .forceTransition) { (image, error, cache, url) in
-                if error != nil {
-                    print(error?.localizedDescription as Any)
-                }
-            }
-
-        }
                         
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToPostViewController" {
-            if selectedPost != nil && selectedMemeImage != nil {
-                let postViewController = segue.destination as! PostViewController
-                postViewController.memeImage = selectedMemeImage!
-                postViewController.post = selectedPost!
-            }
+
         }
     }
     
@@ -227,20 +196,12 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         collectionView.deselectItem(at: indexPath, animated: true)
                 
         selectedMemeImage = (collectionView.cellForItem(at: indexPath) as! SingleMemeCollectionViewCell).memeImageView.image
-        selectedPost = postsArray[indexPath.row]
         
         performSegue(withIdentifier: "SegueToPostViewController", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row > postsArray.count - 5 {
-            if postsArray.count < total! {
-                page = page + 1
-                getUserPosts(userID: user?.id)
-            } else {
-                print("All posts loaded")
-            }
-        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -291,22 +252,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+//        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
 
-        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: CGSize(width: 1024, height: 769)) { (newPost) in
-            picker.dismiss(animated: true) {
-                if let post = newPost {
-                    
-                    print(post)
-                                        
-                    self.postsArray.insert(post, at: 0)
-                    
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    
-                    self.collectionView.insertItems(at: [indexPath])
-                                                            
-                }
-            }
-        }
     }
 }

@@ -40,7 +40,11 @@ class JokeEditorViewController: UIViewController {
     }
     
     @IBAction func actionPublish(_ sender: UIBarButtonItem) {
-        print("publishing!")
+        sendPost()
+    }
+    
+    func sendPost() {
+        print("sendPost")
     }
 }
 

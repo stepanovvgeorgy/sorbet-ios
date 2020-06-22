@@ -128,48 +128,6 @@
             </objects>
             <point key="canvasLocation" x="175" y="1880"/>
         </scene>
-        <!--Новый-->
-        <scene sceneID="l9c-jZ-T6A">
-            <objects>
-                <viewController id="RUB-vR-cFR" customClass="NewPostViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TBK-47-gok">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-aa-6Uy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
-                                <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Wl7-Y0-HXz">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="RUB-vR-cFR" id="hbn-Rk-X9k"/>
-                                    <outlet property="delegate" destination="RUB-vR-cFR" id="Y8D-qr-yMs"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="YAv-Gf-moJ" firstAttribute="trailing" secondItem="VbC-aa-6Uy" secondAttribute="trailing" id="0Ib-Ev-OeY"/>
-                            <constraint firstItem="YAv-Gf-moJ" firstAttribute="bottom" secondItem="VbC-aa-6Uy" secondAttribute="bottom" id="9iK-Zg-U46"/>
-                            <constraint firstItem="VbC-aa-6Uy" firstAttribute="top" secondItem="YAv-Gf-moJ" secondAttribute="top" id="JQ9-Kz-GLL"/>
-                            <constraint firstItem="VbC-aa-6Uy" firstAttribute="leading" secondItem="YAv-Gf-moJ" secondAttribute="leading" id="oDm-6d-y6W"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="YAv-Gf-moJ"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Новый" id="qzy-eP-Een"/>
-                    <connections>
-                        <outlet property="collectionView" destination="VbC-aa-6Uy" id="Ubm-bj-x00"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2H-uS-fFR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138" y="3019"/>
-        </scene>
         <!--Profile View Controller-->
         <scene sceneID="gjR-3c-PwJ">
             <objects>
@@ -596,29 +554,6 @@
             </objects>
             <point key="canvasLocation" x="-735" y="1880"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="qpB-e2-Rln">
-            <objects>
-                <navigationController storyboardIdentifier="NewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="F1y-S7-D6a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="new" id="IrM-wJ-AEr"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="D28-0h-AoF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="RUB-vR-cFR" kind="relationship" relationship="rootViewController" id="dgV-Da-m0f"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MTO-df-j8N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-771" y="3019"/>
-        </scene>
         <!--Изменить профиль-->
         <scene sceneID="FSC-Rn-UGJ">
             <objects>
@@ -831,7 +766,7 @@
                                 <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                 <connections>
                                     <outlet property="delegate" destination="cqK-pb-iXM" id="V4s-xS-lEN"/>
                                 </connections>
@@ -874,7 +809,6 @@
         <image name="baby" width="512" height="512"/>
         <image name="icecream" width="25" height="25"/>
         <image name="more" width="25" height="25"/>
-        <image name="new" width="25" height="25"/>
         <image name="return" width="25" height="25"/>
         <image name="send" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
