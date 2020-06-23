@@ -19,9 +19,7 @@ class ProfileViewController: UIViewController {
     var user: User? {
         didSet {
             navigationItem.title = "id\(user?.id ?? 0)"
-            activityIndicator.stopAnimating()
-            collectionView.reloadData()
-            collectionView.isHidden = false
+            self.getUserMemes()
         }
     }
     
@@ -36,8 +34,10 @@ class ProfileViewController: UIViewController {
     var userID: Int?
     
     var page: Int = 1
-    var limit: Int = 15
+    var limit: Int = 20
     var total: Int?
+    
+    var memesArray = Array<Meme>()
     
     var selectedMemeImage: UIImage?
     
@@ -79,6 +79,16 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func getUserMemes() {
+        NetworkManager.shared.getMemesByUserID(user?.id, page: page, limit: limit) { (memes, total) in
+            print(memes)
+            self.total = total
+            self.memesArray.append(contentsOf: memes)
+            self.collectionView.reloadData()
+            self.collectionView.isHidden = false
+            self.activityIndicator.stopAnimating()
+        }
+    }
     
     override func viewWillLayoutSubviews() {
         /* https://stackoverflow.com/questions/13191480/collectionviewviewforsupplementaryelementofkindatindexpath-called-only-with-u */
@@ -169,19 +179,20 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return memesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
                 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellReuseIdentifier, for: indexPath) as! SingleMemeCollectionViewCell
-    
-                        
+        
+        let meme = memesArray[indexPath.row]
+        
+        guard let memeImageURL = URL(string: "\(meme.imageName ?? "")") else {return cell}
+        
+        cell.memeImageView.sd_setImage(with: memeImageURL)
+                    
         return cell
     }
     
@@ -201,7 +212,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
+        if indexPath.row > memesArray.count - 10 {
+             if memesArray.count < total! {
+                 page = page + 1
+                 getUserMemes()
+             } else {
+                 print("All posts loaded")
+             }
+         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -252,7 +270,23 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-//        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
-
+        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+        
+        let resize = CGSize(width: 1024, height: 768)
+        
+        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: resize) { (meme) in
+            if let returnedMeme = meme {
+                
+                self.memesArray.insert(returnedMeme, at: 0)
+                
+                self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+                
+                print(returnedMeme)
+                
+            } else {
+                self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
+            }
+            picker.dismiss(animated: true)
+        }
     }
 }

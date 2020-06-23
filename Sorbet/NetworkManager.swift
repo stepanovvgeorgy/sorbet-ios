@@ -173,7 +173,7 @@ class NetworkManager {
         }
     }
     
-    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping () -> ()) {
+    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping (_ meme: Meme?) -> ()) {
         
         let croppedImage = ImageHandler.shared.resizeImage(image: image, targetSize: resize ?? CGSize(width: 320, height: 240))
         
@@ -191,8 +191,50 @@ class NetworkManager {
             let jsonData = JSON(result.data as Any)
             
             print(jsonData)
+
+            let memeImageURL = "\(self.uploadsUrl)/\(jsonData["image_name"].stringValue)"
             
-            completion()
+            let meme = Meme(id: jsonData["id"].intValue, imageName: memeImageURL, userID: jsonData["UserId"].intValue)
+            
+            completion(meme)
+        }
+    }
+    
+    func getMemesByUserID(_ id: Int?, page: Int, limit: Int, _ completion: @escaping (_ memes: [Meme], _ total: Int) -> ()) {
+        if let userID = id {
+            
+            guard let url = URL(string: "\(serverUrl)/meme/user/\(userID)?page=\(page)&limit=\(limit)") else {return}
+            
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                
+                switch response.result {
+                case .success(let value):
+                    if response.response?.statusCode == 200 {
+                        
+                        let jsonData = JSON(value)
+                        
+                        let total = Int((response.response?.headers["total"])!)
+                        
+                        var memesArray: [Meme] = Array()
+                        
+                        jsonData.array!.forEach({ (item) in
+                            let meme = Meme(id: item["id"].intValue,
+                                            imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
+                                            userID: item["UserId"].intValue)
+                            memesArray.append(meme)
+                        })
+                        
+                        completion(memesArray, total!)
+                        
+                    } else {
+                        print("Something went wrong")
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
+            }
+            
         }
     }
     

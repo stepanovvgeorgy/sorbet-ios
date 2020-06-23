@@ -11,4 +11,5 @@ import Foundation
 struct Meme {
     let id: Int?
     let imageName: String?
+    let userID: Int?
 }
