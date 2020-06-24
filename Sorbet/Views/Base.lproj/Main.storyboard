@@ -98,17 +98,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x29-IG-YYB">
+                                <rect key="frame" x="25" y="655" width="364" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcM-gV-7Xd">
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="1UW-E4-eE4"/>
+                                            <constraint firstAttribute="height" constant="50" id="oJ9-1z-Y4N"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Shit"/>
+                                        <connections>
+                                            <action selector="actionDislike:" destination="Ag8-ZE-bAz" eventType="touchUpInside" id="wvw-qR-wex"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjA-Ig-CsR">
+                                        <rect key="frame" x="182" y="0.0" width="182" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="AZd-41-VAb"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="aBj-2f-L0u"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Like"/>
+                                        <connections>
+                                            <action selector="actionLike:" destination="Ag8-ZE-bAz" eventType="touchUpInside" id="Jjm-4W-hnb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yrt-6t-d1t"/>
+                                </constraints>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6Y-ls-67P" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <rect key="frame" x="20" y="20" width="374" height="601"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="R6Y-ls-67P" firstAttribute="leading" secondItem="7U7-LW-nuz" secondAttribute="leading" id="31f-hs-ITk"/>
-                            <constraint firstItem="R6Y-ls-67P" firstAttribute="bottom" secondItem="7U7-LW-nuz" secondAttribute="bottom" id="4Ub-Eu-EX6"/>
-                            <constraint firstItem="R6Y-ls-67P" firstAttribute="top" secondItem="7U7-LW-nuz" secondAttribute="top" id="McB-TB-rrl"/>
-                            <constraint firstItem="R6Y-ls-67P" firstAttribute="trailing" secondItem="7U7-LW-nuz" secondAttribute="trailing" id="n0K-Hs-ndf"/>
+                            <constraint firstItem="7U7-LW-nuz" firstAttribute="bottom" secondItem="x29-IG-YYB" secondAttribute="bottom" constant="20" id="65G-uY-mDo"/>
+                            <constraint firstItem="x29-IG-YYB" firstAttribute="top" secondItem="R6Y-ls-67P" secondAttribute="bottom" constant="34" id="LPM-TZ-DEB"/>
+                            <constraint firstItem="R6Y-ls-67P" firstAttribute="leading" secondItem="7U7-LW-nuz" secondAttribute="leading" constant="20" id="b6a-Tc-clM"/>
+                            <constraint firstItem="R6Y-ls-67P" firstAttribute="top" secondItem="7U7-LW-nuz" secondAttribute="top" constant="20" id="b6o-LX-lGV"/>
+                            <constraint firstItem="R6Y-ls-67P" firstAttribute="trailing" secondItem="7U7-LW-nuz" secondAttribute="trailing" constant="-20" id="j9o-TK-EIx"/>
+                            <constraint firstItem="7U7-LW-nuz" firstAttribute="trailing" secondItem="x29-IG-YYB" secondAttribute="trailing" constant="25" id="lla-Xn-2RM"/>
+                            <constraint firstItem="x29-IG-YYB" firstAttribute="leading" secondItem="7U7-LW-nuz" secondAttribute="leading" constant="25" id="qy0-xa-y3d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7U7-LW-nuz"/>
                     </view>
@@ -121,12 +156,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dislikeButton" destination="zcM-gV-7Xd" id="hzH-LD-zFN"/>
                         <outlet property="kolodaView" destination="R6Y-ls-67P" id="xX7-Ab-3qo"/>
+                        <outlet property="likeButton" destination="pjA-Ig-CsR" id="jhG-Pw-jFj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PGO-Iq-iNg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="1880"/>
+            <point key="canvasLocation" x="173.91304347826087" y="1879.6875"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="gjR-3c-PwJ">

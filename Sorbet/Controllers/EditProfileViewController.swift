@@ -99,6 +99,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         } else if indexPath.row == 3 {
             usernameTextField = cell.textField
             cell.textFieldLabel.text = "Username"
+            cell.textField.autocorrectionType = .no
             cell.textField.text = user?.username
         }
         return cell

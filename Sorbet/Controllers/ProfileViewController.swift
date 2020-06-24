@@ -49,7 +49,6 @@ class ProfileViewController: UIViewController {
         }
         
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
         
         collectionView.isHidden = true
         
@@ -66,9 +65,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func reloadVC(_ notification: Notification) {
-        user = nil
-        activityIndicator.startAnimating()
-        getUserByID(userID!)
+        print("reloadProfileVC")
     }
 
     func getUserByID(_ id: Int) {
@@ -198,7 +195,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToPostViewController" {
-
+            let postViewController = segue.destination as! PostViewController
+            postViewController.memeImage = selectedMemeImage
+            postViewController.user = user
         }
     }
     
@@ -229,6 +228,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellReuseIdentifier, for: indexPath) as! ProfileHeaderCollectionViewCell
             
             let currentUserID = UserDefaults.standard.value(forKey: "user_id") as! Int
+            
+            headerCell.totalLabel.text = "\(total ?? 0)"
             
             if user?.id == currentUserID {
                 headerCell.subscribeButton.isHidden = true
@@ -270,7 +271,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         let resize = CGSize(width: 1024, height: 768)
         
@@ -278,6 +279,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             if let returnedMeme = meme {
                 
                 self.memesArray.insert(returnedMeme, at: 0)
+                
+                self.total = self.total! + 1
                 
                 self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
                 

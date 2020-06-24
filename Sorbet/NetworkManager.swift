@@ -14,9 +14,9 @@ class NetworkManager {
     
     static let shared: NetworkManager = NetworkManager()
     
-    let serverUrl = "http://localhost:4400/api"
-    let uploadsUrl = "http://localhost:4400/uploads"
-    let avatarsUrl = "http://localhost:4400/avatars"
+    let serverUrl = "http://172.20.10.4:4400/api"
+    let uploadsUrl = "http://172.20.10.4:4400/uploads"
+    let avatarsUrl = "http://172.20.10.4:4400/avatars"
     
     var headers: HTTPHeaders {
         get {
@@ -232,10 +232,42 @@ class NetworkManager {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-                
             }
-            
         }
+    }
+    
+    func getAllMemes(page: Int, limit: Int, _ completion: @escaping (_ memes: [Meme], _ total: Int) -> ()) {
+        
+        guard let url = URL(string: "\(serverUrl)/meme/all?page=\(page)&limit=\(limit)") else {return}
+        
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                if response.response?.statusCode == 200 {
+                    
+                    let jsonData = JSON(value)
+                    
+                    let total = Int((response.response?.headers["total"])!)
+                    
+                    var memesArray: [Meme] = Array()
+                    
+                    jsonData.array!.forEach({ (item) in
+                        let meme = Meme(id: item["id"].intValue,
+                                        imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
+                                        userID: item["UserId"].intValue)
+                        memesArray.append(meme)
+                    })
+                    
+                    completion(memesArray, total!)
+                    
+                } else {
+                    print(value as Any)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
 }

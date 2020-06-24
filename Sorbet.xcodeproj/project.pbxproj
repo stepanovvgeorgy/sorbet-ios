@@ -35,6 +35,8 @@
 		D33BE55824885F28003C4499 /* NewPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */; };
 		D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */; };
 		D33BE55D24887494003C4499 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55C24887494003C4499 /* Meme.swift */; };
+		D363B44F24A33B8600998283 /* KolodaOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D363B44E24A33B8600998283 /* KolodaOverlayView.xib */; };
+		D363B45124A33BB800998283 /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D363B45024A33BB800998283 /* KolodaOverlayView.swift */; };
 		D3785AF8248B14E60070B2BA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AF7248B14E60070B2BA /* PostViewController.swift */; };
 		D3785AFB248B19830070B2BA /* PostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */; };
 		D3785AFC248B19830070B2BA /* PostHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */; };
@@ -82,6 +84,8 @@
 		D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		D33BE55C24887494003C4499 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		D363B44E24A33B8600998283 /* KolodaOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KolodaOverlayView.xib; sourceTree = "<group>"; };
+		D363B45024A33BB800998283 /* KolodaOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodaOverlayView.swift; sourceTree = "<group>"; };
 		D3785AF7248B14E60070B2BA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				D33BE54A2487D765003C4499 /* EditProfileViewController.swift */,
 				D3785AF7248B14E60070B2BA /* PostViewController.swift */,
 				D3F27F60249D07310077897D /* JokeEditorViewController.swift */,
+				D363B45024A33BB800998283 /* KolodaOverlayView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			children = (
 				D3239730248454C300CD4A57 /* Main.storyboard */,
 				D3239735248454C500CD4A57 /* LaunchScreen.storyboard */,
+				D363B44E24A33B8600998283 /* KolodaOverlayView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				D3239734248454C500CD4A57 /* Assets.xcassets in Resources */,
 				D3239732248454C300CD4A57 /* Main.storyboard in Resources */,
 				D33BE54424871DD0003C4499 /* SingleMemeCollectionViewCell.xib in Resources */,
+				D363B44F24A33B8600998283 /* KolodaOverlayView.xib in Resources */,
 				D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */,
 				D3785B00248B1CDE0070B2BA /* PostMemeTableViewCell.xib in Resources */,
 			);
@@ -373,6 +380,7 @@
 				D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */,
 				D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */,
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,
+				D363B45124A33BB800998283 /* KolodaOverlayView.swift in Sources */,
 				D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */,
 				D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */,
 				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,

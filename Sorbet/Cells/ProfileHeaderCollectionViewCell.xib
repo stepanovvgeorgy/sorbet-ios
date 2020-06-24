@@ -31,16 +31,10 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zhJ-mY-jy2">
-                                        <rect key="frame" x="89" y="10" width="245" height="54"/>
+                                        <rect key="frame" x="89" y="22.5" width="245" height="29.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Карма: +1233124" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgq-BG-43Y">
-                                                <rect key="frame" x="0.0" y="0.0" width="245" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RRc-Pp-unL">
-                                                <rect key="frame" x="0.0" y="24.5" width="245" height="29.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="245" height="29.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zvQ-t3-MSr">
                                                         <rect key="frame" x="0.0" y="0.0" width="75" height="29.5"/>
@@ -155,6 +149,7 @@
                 <outlet property="fullNameLabel" destination="U38-9i-Ijo" id="NJe-ab-6Kp"/>
                 <outlet property="newPostButton" destination="xXs-KN-ih6" id="HY9-ot-gde"/>
                 <outlet property="subscribeButton" destination="f07-Kg-cio" id="mko-Qj-lfz"/>
+                <outlet property="totalLabel" destination="T07-pv-Xew" id="vh9-Ia-fpb"/>
                 <outlet property="view" destination="ggm-5c-iu1" id="0Bo-9B-o7C"/>
             </connections>
             <point key="canvasLocation" x="155.07246376811597" y="194.19642857142856"/>

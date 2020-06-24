@@ -15,6 +15,7 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var newPostButton: UIButton!
+    @IBOutlet weak var totalLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
