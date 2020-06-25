@@ -148,6 +148,7 @@
                         <viewLayoutGuide key="safeArea" id="7U7-LW-nuz"/>
                     </view>
                     <navigationItem key="navigationItem" id="h0e-tc-6wh">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7Ql-ux-eZc"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="return" id="Y6d-2T-FtW">
                             <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
@@ -168,7 +169,7 @@
         <!--Profile View Controller-->
         <scene sceneID="gjR-3c-PwJ">
             <objects>
-                <viewController id="c3L-a8-5i6" customClass="ProfileViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="c3L-a8-5i6" customClass="ProfileViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOv-wc-EEp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -581,6 +582,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -10,6 +10,8 @@ import UIKit
 import Koloda
 import SDWebImage
 
+fileprivate let segueToProfileViewControllerID = "SegueToProfileViewController"
+
 class SorbetKolodaViewController: UIViewController {
 
     @IBOutlet weak var kolodaView: KolodaView!
@@ -22,6 +24,8 @@ class SorbetKolodaViewController: UIViewController {
     var page: Int = 1
     var limit: Int = 3
     var total: Int?
+    
+    var userIDForSegue: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,14 +81,41 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         
         viewForCard.layer.cornerRadius = 20
         viewForCard.clipsToBounds = true
+        
+        viewForCard.userFullNameLabel.text = (meme.user?.firstName)!
+        
+        guard let memeURL = URL(string: meme.imageName!) else {return viewForCard}
 
-        guard let url = URL(string: meme.imageName!) else {return viewForCard}
+        viewForCard.memeImageView.sd_setImage(with: memeURL, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"))
+        
+        guard let avatarURL = URL(string: meme.user?.avatar ?? "") else {return viewForCard}
+        
+        viewForCard.avatarImageView.sd_setImage(with: avatarURL)
 
-        viewForCard.memeImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"))
+        viewForCard.bottomView.tag = meme.userID!
+        
+        viewForCard.avatarImageView.tag = meme.userID!
+        viewForCard.avatarImageView.isUserInteractionEnabled = true
+        
+        let avatarTapGesture = UITapGestureRecognizer(target: self, action: #selector(toProfileVC(_:)))
+        
+        viewForCard.avatarImageView.addGestureRecognizer(avatarTapGesture)
         
         return viewForCard
 
     }
+    
+    @objc private func toProfileVC(_ sender: UITapGestureRecognizer) {
+        
+        let profileViewController = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        
+        let senderView = sender.view
+        
+         profileViewController.userID = senderView!.tag
+         
+         navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("KolodaOverlayView", owner: self, options: nil)![0] as? OverlayView

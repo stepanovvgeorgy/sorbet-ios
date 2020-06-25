@@ -12,4 +12,5 @@ struct Meme {
     let id: Int?
     let imageName: String?
     let userID: Int?
+    let user: User?
 }

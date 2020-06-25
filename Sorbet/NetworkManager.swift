@@ -194,7 +194,7 @@ class NetworkManager {
 
             let memeImageURL = "\(self.uploadsUrl)/\(jsonData["image_name"].stringValue)"
             
-            let meme = Meme(id: jsonData["id"].intValue, imageName: memeImageURL, userID: jsonData["UserId"].intValue)
+            let meme = Meme(id: jsonData["id"].intValue, imageName: memeImageURL, userID: jsonData["UserId"].intValue, user: nil)
             
             completion(meme)
         }
@@ -218,9 +218,22 @@ class NetworkManager {
                         var memesArray: [Meme] = Array()
                         
                         jsonData.array!.forEach({ (item) in
+                            
+                            let user = User(id: item["UserId"].intValue,
+                                            token: nil,
+                                            username: item["User"]["username"].stringValue,
+                                            rating: item["User"]["rating"].intValue,
+                                            expiredDate: nil,
+                                            avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
+                                            firstName: item["User"]["first_name"].stringValue,
+                                            lastName: item["User"]["last_name"].stringValue,
+                                            about: nil,
+                                            password: nil,
+                                            email: nil)
+                            
                             let meme = Meme(id: item["id"].intValue,
                                             imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
-                                            userID: item["UserId"].intValue)
+                                            userID: item["UserId"].intValue, user: user)
                             memesArray.append(meme)
                         })
                         
@@ -252,9 +265,23 @@ class NetworkManager {
                     var memesArray: [Meme] = Array()
                     
                     jsonData.array!.forEach({ (item) in
+                        
+                        let user = User(id: item["UserId"].intValue,
+                                        token: nil,
+                                        username: item["User"]["username"].stringValue,
+                                        rating: item["User"]["rating"].intValue,
+                                        expiredDate: nil,
+                                        avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
+                                        firstName: item["User"]["first_name"].stringValue,
+                                        lastName: item["User"]["last_name"].stringValue,
+                                        about: nil,
+                                        password: nil,
+                                        email: nil)
+                        
                         let meme = Meme(id: item["id"].intValue,
                                         imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
-                                        userID: item["UserId"].intValue)
+                                        userID: item["UserId"].intValue,
+                                        user: user)
                         memesArray.append(meme)
                     })
                     

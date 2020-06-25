@@ -9,8 +9,8 @@
 import UIKit
 import Koloda
 
-private let overlayRightImageName = "yesOverlayImage"
-private let overlayLeftImageName = "noOverlayImage"
+private let overlayRightImageName = "like"
+private let overlayLeftImageName = "dislike"
 
 class KolodaOverlayView: OverlayView {
     
@@ -18,7 +18,6 @@ class KolodaOverlayView: OverlayView {
         [unowned self] in
         
         var imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode = .scaleAspectFill
         self.addSubview(imageView)
          
          return imageView
