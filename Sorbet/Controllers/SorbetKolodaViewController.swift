@@ -13,20 +13,18 @@ import SDWebImage
 fileprivate let segueToProfileViewControllerID = "SegueToProfileViewController"
 
 class SorbetKolodaViewController: UIViewController {
-
+    
     @IBOutlet weak var kolodaView: KolodaView!
-        
+    
     @IBOutlet weak var dislikeButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     
     var memesArray: [Meme] = Array()
     
     var page: Int = 1
-    var limit: Int = 3
+    var limit: Int = 15
     var total: Int?
-    
-    var userIDForSegue: Int?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +46,7 @@ class SorbetKolodaViewController: UIViewController {
             self.kolodaView.reloadData()
         }
     }
-
+    
     
     @IBAction func actionKolodaUndo(_ sender: UIBarButtonItem) {
         kolodaView.revertAction()
@@ -74,9 +72,9 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-                
+        
         let viewForCard = Bundle.main.loadNibNamed("KolodaViewCard", owner: self, options: nil)![0] as! KolodaViewCard
-                
+        
         let meme = memesArray[index]
         
         viewForCard.layer.cornerRadius = 20
@@ -85,13 +83,13 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         viewForCard.userFullNameLabel.text = (meme.user?.firstName)!
         
         guard let memeURL = URL(string: meme.imageName!) else {return viewForCard}
-
+        
         viewForCard.memeImageView.sd_setImage(with: memeURL, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"))
         
         guard let avatarURL = URL(string: meme.user?.avatar ?? "") else {return viewForCard}
         
         viewForCard.avatarImageView.sd_setImage(with: avatarURL)
-
+        
         viewForCard.bottomView.tag = meme.userID!
         
         viewForCard.avatarImageView.tag = meme.userID!
@@ -102,7 +100,7 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         viewForCard.avatarImageView.addGestureRecognizer(avatarTapGesture)
         
         return viewForCard
-
+        
     }
     
     @objc private func toProfileVC(_ sender: UITapGestureRecognizer) {
@@ -111,9 +109,9 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         
         let senderView = sender.view
         
-         profileViewController.userID = senderView!.tag
-         
-         navigationController?.pushViewController(profileViewController, animated: true)
+        profileViewController.userID = senderView!.tag
+        
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     
@@ -127,24 +125,27 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         
-        if total! > memesArray.count {
-            
-            let position = kolodaView.currentCardIndex
-            
-            page = page + 1
-  
-            NetworkManager.shared.getAllMemes(page: page, limit: limit) { (memes, total) in
-                self.memesArray.append(contentsOf: memes)
-                self.kolodaView.insertCardAtIndexRange(position..<position + memes.count, animated: true)
+        let position = kolodaView.currentCardIndex
+        
+        if position > memesArray.count - 5 {
+            if memesArray.count < total! {
+                
+                page = page + 1
+                
+                NetworkManager.shared.getAllMemes(page: page, limit: limit) { (memes, total) in
+                    self.memesArray.append(contentsOf: memes)
+                    self.kolodaView.reloadData()
+                }
+                
+            } else {
+                print("all memems has been loaded")
             }
-            
-        } else {
-            print("all memems has been loaded")
         }
+        
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-                
+        
         if direction == .right {
             print("swipe right")
         }
