@@ -70,19 +70,19 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        
-        let imageView = UIImageView()
-        
+                
+        let viewForCard = Bundle.main.loadNibNamed("KolodaViewCard", owner: self, options: nil)![0] as! KolodaViewCard
+                
         let meme = memesArray[index]
         
-        imageView.layer.cornerRadius = 20
-        imageView.clipsToBounds = true
+        viewForCard.layer.cornerRadius = 20
+        viewForCard.clipsToBounds = true
+
+        guard let url = URL(string: meme.imageName!) else {return viewForCard}
+
+        viewForCard.memeImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"))
         
-        guard let url = URL(string: meme.imageName!) else {return imageView}
-        
-        imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"))
-                
-        return imageView
+        return viewForCard
 
     }
     

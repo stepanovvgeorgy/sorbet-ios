@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2rL-rx-UoV" customClass="KolodaViewCard" customModule="Sorbet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5" translatesAutoresizingMaskIntoConstraints="NO" id="6WC-7X-ckM">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLp-Ee-quV">
+                    <rect key="frame" x="0.0" y="798" width="414" height="64"/>
+                    <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="MHO-Fz-U1r"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="6WC-7X-ckM" firstAttribute="top" secondItem="Hcb-FB-CUO" secondAttribute="top" id="8Vu-BG-sQZ"/>
+                <constraint firstItem="LLp-Ee-quV" firstAttribute="leading" secondItem="Hcb-FB-CUO" secondAttribute="leading" id="Ed4-hj-ZR2"/>
+                <constraint firstItem="Hcb-FB-CUO" firstAttribute="trailing" secondItem="6WC-7X-ckM" secondAttribute="trailing" id="FUb-Mg-bC8"/>
+                <constraint firstItem="LLp-Ee-quV" firstAttribute="bottom" secondItem="Hcb-FB-CUO" secondAttribute="bottom" id="HPP-YO-1C6"/>
+                <constraint firstItem="LLp-Ee-quV" firstAttribute="trailing" secondItem="Hcb-FB-CUO" secondAttribute="trailing" id="In9-Fu-YSe"/>
+                <constraint firstItem="Hcb-FB-CUO" firstAttribute="bottom" secondItem="6WC-7X-ckM" secondAttribute="bottom" id="gln-bb-OTC"/>
+                <constraint firstItem="6WC-7X-ckM" firstAttribute="leading" secondItem="Hcb-FB-CUO" secondAttribute="leading" id="nfE-5x-5t5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Hcb-FB-CUO"/>
+            <connections>
+                <outlet property="bottomView" destination="LLp-Ee-quV" id="Pl6-HL-qWc"/>
+                <outlet property="memeImageView" destination="6WC-7X-ckM" id="ZAa-id-Udk"/>
+            </connections>
+            <point key="canvasLocation" x="-14.492753623188406" y="99.776785714285708"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="5" width="635" height="631"/>
+    </resources>
+</document>
