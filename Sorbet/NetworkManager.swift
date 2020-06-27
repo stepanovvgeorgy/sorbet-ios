@@ -10,13 +10,17 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+fileprivate let networkProtocol = "http"
+fileprivate let networkHost = "192.168.1.5"
+fileprivate let networkPort = "4400"
+
 class NetworkManager {
     
     static let shared: NetworkManager = NetworkManager()
     
-    let serverUrl = "http://localhost:4400/api"
-    let uploadsUrl = "http://localhost:4400/uploads"
-    let avatarsUrl = "http://localhost:4400/avatars"
+    let serverUrl = "\(networkProtocol)://\(networkHost):\(networkPort)/api"
+    let uploadsUrl = "\(networkProtocol)://\(networkHost):\(networkPort)/uploads"
+    let avatarsUrl = "\(networkProtocol)://\(networkHost):\(networkPort)/avatars"
     
     var headers: HTTPHeaders {
         get {
@@ -73,11 +77,9 @@ class NetworkManager {
         
         if let user = user {
             let parameters: [String: Any] = [
-                "avatar": user.avatar as Any,
                 "email": user.email as Any,
-                "password": user.password as Any,
-                "first_name": user.firstName as Any,
-                "last_name": user.lastName as Any
+                "username": user.username as Any,
+                "password": user.password as Any
             ]
             
             AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { (response) in

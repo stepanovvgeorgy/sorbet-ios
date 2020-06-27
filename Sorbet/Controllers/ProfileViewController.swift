@@ -8,6 +8,8 @@
 
 import UIKit
 import SDWebImage
+import BSImagePicker
+import Photos
 
 fileprivate let profileCellReuseIdentifier = "ProfileCell"
 fileprivate let headerCellReuseIdentifier = "HeaderCell"
@@ -18,7 +20,7 @@ class ProfileViewController: UIViewController {
     
     var user: User? {
         didSet {
-            navigationItem.title = "id\(user?.id ?? 0)"
+            navigationItem.title = "@\(user?.username ?? "user")"
             self.getUserMemes()
         }
     }
@@ -26,6 +28,7 @@ class ProfileViewController: UIViewController {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.indicator
     
     var imagePicker: UIImagePickerController = UIImagePickerController()
+    var bsImagePicker = ImagePickerController()
     
     var userAvatarImage: UIImage?
     
@@ -43,7 +46,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                        
         if userID == nil {
             userID = (UserDefaults.standard.value(forKey: "user_id") as! Int)
         }
@@ -107,7 +110,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction private func actionMore(_ sender: UIBarButtonItem) {
         
-        let userName = (user?.firstName)! + " " + (user?.lastName)!
+        let userName = "@" + (user?.username)!
         
         let actionSheet = UIAlertController(title: nil, message: userName, preferredStyle: .actionSheet)
                 
@@ -154,7 +157,41 @@ class ProfileViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Ничего", style: .cancel)
         
         let memeAction = UIAlertAction(title: "Just meme", style: .default) { (action) in
-            self.present(self.imagePicker, animated: true, completion: nil)
+
+            self.presentImagePicker(self.bsImagePicker, select: { (asset) in
+                // User selected an asset. Do something with it. Perhaps begin processing/upload?
+                print(asset)
+            }, deselect: { (asset) in
+                // User deselected an asset. Cancel whatever you did when asset was selected.
+            }, cancel: { (assets) in
+                // User canceled selection.
+            }, finish: { (assets) in
+                // User finished selection assets.
+                if assets.count > 0 {
+                    assets.forEach { (asset) in
+                        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, info) in
+                            
+                            let resize = CGSize(width: 1024, height: 768)
+
+                            NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
+                                if let returnedMeme = meme {
+                                    
+                                    self.memesArray.insert(returnedMeme, at: 0)
+                                    
+                                    self.total = self.total! + 1
+                                    
+                                    self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+                                    
+                                    print(returnedMeme)
+                                    
+                                } else {
+                                    self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
         }
         
         let jokeAction = UIAlertAction(title: "Каламбур", style: .default) { (action) in

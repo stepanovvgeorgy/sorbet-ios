@@ -10,19 +10,18 @@ import UIKit
 
 class SignUpTableViewController: UITableViewController {
 
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordRepeatTextField: UITextField!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = #colorLiteral(red: 0.5998017788, green: 0.2449732423, blue: 0.7006943822, alpha: 1)
         
         emailTextField.becomeFirstResponder()
-        
-        let fields = [emailTextField, passwordTextField, passwordRepeatTextField, firstNameTextField, lastNameTextField]
+                
+        let fields = [usernameTextField, emailTextField, passwordTextField, passwordRepeatTextField]
         
         fields.forEach { (textField) in
             textField?.borderBottom(height: 2, color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
@@ -46,15 +45,16 @@ class SignUpTableViewController: UITableViewController {
     func signUp() {
         
         if let email = emailTextField.text,
+            let username = usernameTextField.text,
             let password = passwordTextField.text,
             let passwordRepeat = passwordRepeatTextField.text,
-            let firstName = firstNameTextField.text,
-            let lastName = lastNameTextField.text,
-        !email.isEmpty && !password.isEmpty && !passwordRepeat.isEmpty && !firstName.isEmpty && !lastName.isEmpty {
+            !username.isEmpty && !email.isEmpty && !password.isEmpty && !passwordRepeat.isEmpty {
             
             if password == passwordRepeat {
                 
-                let user = User(id: nil, token: nil, username: nil, rating: nil, expiredDate: nil, avatar: nil, firstName: firstName, lastName: lastName, about: nil, password: password, email: email)
+                print(username)
+                
+                let user = User(id: nil, token: nil, username: username, rating: nil, expiredDate: nil, avatar: nil, firstName: nil, lastName: nil, about: nil, password: password, email: email)
                 
                 NetworkManager.shared.signUp(user: user, { (userID, token) in
                     Helper.shared.authFinished(fromViewController: self, userID: userID, token: token)
@@ -90,14 +90,12 @@ extension SignUpTableViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.isEqual(emailTextField) {
+            usernameTextField.becomeFirstResponder()
+        } else if textField.isEqual(usernameTextField) {
             passwordTextField.becomeFirstResponder()
         } else if textField.isEqual(passwordTextField) {
             passwordRepeatTextField.becomeFirstResponder()
         } else if textField.isEqual(passwordRepeatTextField) {
-            firstNameTextField.becomeFirstResponder()
-        } else if textField.isEqual(firstNameTextField) {
-            lastNameTextField.becomeFirstResponder()
-        } else if textField.isEqual(lastNameTextField) {
             signUp()
         }
         

@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gab-Oy-uew">
                                 <rect key="frame" x="20" y="92" width="374" height="172"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPt-5h-147">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username или email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPt-5h-147">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SKc-Eu-VNl"/>
@@ -37,7 +37,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="79t-OC-PRg"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-aZ-ILQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-aZ-ILQ">
                                         <rect key="frame" x="0.0" y="65" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="g53-Ze-4wu"/>
@@ -369,18 +369,49 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.5568627451" green="0.2666666667" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Cvr-t1-9at">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="s2i-lm-fLy">
                                         <rect key="frame" x="0.0" y="98" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s2i-lm-fLy" id="wgy-Nk-URE">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LTb-Yh-wHd">
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="60"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" textContentType="email"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="coB-Np-Zl0" id="TBR-So-XxA"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LTb-Yh-wHd" firstAttribute="leading" secondItem="wgy-Nk-URE" secondAttribute="leading" constant="15" id="6VH-OM-Yef"/>
+                                                <constraint firstItem="LTb-Yh-wHd" firstAttribute="top" secondItem="wgy-Nk-URE" secondAttribute="top" id="7Ge-wD-nOc"/>
+                                                <constraint firstAttribute="trailing" secondItem="LTb-Yh-wHd" secondAttribute="trailing" constant="15" id="DRb-qk-kfg"/>
+                                                <constraint firstAttribute="bottom" secondItem="LTb-Yh-wHd" secondAttribute="bottom" id="Ptd-YC-YH4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.5568627451" green="0.2666666667" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Cvr-t1-9at">
+                                        <rect key="frame" x="0.0" y="158" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cvr-t1-9at" id="SNB-v4-box">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4YD-JP-xYX">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4YD-JP-xYX">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" textContentType="email"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="next" textContentType="username"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -401,13 +432,13 @@
                                         <color key="backgroundColor" red="0.55686274509803924" green="0.26666666666666666" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="0k0-pe-YVY">
-                                        <rect key="frame" x="0.0" y="158" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="218" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0k0-pe-YVY" id="JT4-GM-SgG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2i-Fz-nDg">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2i-Fz-nDg">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
@@ -432,17 +463,17 @@
                                         <color key="backgroundColor" red="0.55686274509803924" green="0.26666666666666666" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="urH-Vi-CRp">
-                                        <rect key="frame" x="0.0" y="218" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="278" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="urH-Vi-CRp" id="7hy-Yz-WTc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-P3-08Y">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Повтори пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-P3-08Y">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="60"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="join" secureTextEntry="YES"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -458,68 +489,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="tQT-P3-08Y" secondAttribute="bottom" id="FbM-sN-11F"/>
                                                 <constraint firstAttribute="trailing" secondItem="tQT-P3-08Y" secondAttribute="trailing" constant="15" id="RkT-OO-cyK"/>
                                                 <constraint firstItem="tQT-P3-08Y" firstAttribute="leading" secondItem="7hy-Yz-WTc" secondAttribute="leading" constant="15" id="Y6O-cR-2bX"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.55686274509803924" green="0.26666666666666666" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="G5v-vG-DoG">
-                                        <rect key="frame" x="0.0" y="278" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G5v-vG-DoG" id="iEy-z0-Aan">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NYj-pl-Ucj">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="60"/>
-                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="coB-Np-Zl0" id="aHD-uW-k1J"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="NYj-pl-Ucj" secondAttribute="trailing" constant="15" id="1lB-Gv-8P1"/>
-                                                <constraint firstItem="NYj-pl-Ucj" firstAttribute="top" secondItem="iEy-z0-Aan" secondAttribute="top" id="LWY-nP-Uzr"/>
-                                                <constraint firstItem="NYj-pl-Ucj" firstAttribute="leading" secondItem="iEy-z0-Aan" secondAttribute="leading" constant="15" id="OcY-TS-iii"/>
-                                                <constraint firstAttribute="bottom" secondItem="NYj-pl-Ucj" secondAttribute="bottom" id="R4n-av-PYT"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.55686274509803924" green="0.26666666666666666" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="41i-95-bLG">
-                                        <rect key="frame" x="0.0" y="338" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41i-95-bLG" id="dOd-hz-xtn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEQ-5x-aqc">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="60"/>
-                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="join"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="coB-Np-Zl0" id="53e-Z0-Ukg"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gEQ-5x-aqc" firstAttribute="leading" secondItem="dOd-hz-xtn" secondAttribute="leading" constant="15" id="CgV-yv-Ymm"/>
-                                                <constraint firstItem="gEQ-5x-aqc" firstAttribute="top" secondItem="dOd-hz-xtn" secondAttribute="top" id="D17-CX-e7Z"/>
-                                                <constraint firstAttribute="trailing" secondItem="gEQ-5x-aqc" secondAttribute="trailing" constant="15" id="H0c-8b-OgV"/>
-                                                <constraint firstAttribute="bottom" secondItem="gEQ-5x-aqc" secondAttribute="bottom" id="vRY-0j-7e4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.55686274509803924" green="0.26666666666666666" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -540,11 +509,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailTextField" destination="4YD-JP-xYX" id="Rqg-4V-Bpc"/>
-                        <outlet property="firstNameTextField" destination="NYj-pl-Ucj" id="vtk-9C-IXi"/>
-                        <outlet property="lastNameTextField" destination="gEQ-5x-aqc" id="b2E-g5-i3t"/>
+                        <outlet property="emailTextField" destination="LTb-Yh-wHd" id="bed-5D-8cz"/>
                         <outlet property="passwordRepeatTextField" destination="tQT-P3-08Y" id="WTo-Yv-DBX"/>
                         <outlet property="passwordTextField" destination="z2i-Fz-nDg" id="7ry-pg-fgY"/>
+                        <outlet property="usernameTextField" destination="4YD-JP-xYX" id="tlG-TD-AcT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMH-Pn-ohe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
