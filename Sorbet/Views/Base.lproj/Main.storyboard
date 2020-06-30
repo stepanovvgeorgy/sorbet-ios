@@ -201,11 +201,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="MO8-wO-TRB">
                         <barButtonItem key="backBarButtonItem" title=" " id="jpA-5t-WtE"/>
-                        <barButtonItem key="rightBarButtonItem" image="more" id="brz-L1-lBu">
-                            <connections>
-                                <action selector="actionMore:" destination="c3L-a8-5i6" id="bDt-hm-mcI"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="w7E-MT-ayR" id="5Q9-wp-ud6"/>
@@ -820,7 +815,6 @@
     <resources>
         <image name="baby" width="512" height="512"/>
         <image name="icecream" width="25" height="25"/>
-        <image name="more" width="25" height="25"/>
         <image name="return" width="25" height="25"/>
         <image name="send" width="25" height="25"/>
         <image name="user" width="25" height="25"/>

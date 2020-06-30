@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 fileprivate let networkProtocol = "http"
-fileprivate let networkHost = "192.168.1.5"
+fileprivate let networkHost = "localhost"
 fileprivate let networkPort = "4400"
 
 class NetworkManager {

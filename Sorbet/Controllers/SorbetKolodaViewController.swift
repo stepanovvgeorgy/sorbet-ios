@@ -80,7 +80,7 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         viewForCard.layer.cornerRadius = 20
         viewForCard.clipsToBounds = true
         
-        viewForCard.userFullNameLabel.text = (meme.user?.firstName)!
+        viewForCard.userFullNameLabel.text = "@" + (meme.user?.username)!
         
         guard let memeURL = URL(string: meme.imageName!) else {return viewForCard}
         
@@ -88,7 +88,7 @@ extension SorbetKolodaViewController: KolodaViewDelegate, KolodaViewDataSource {
         
         guard let avatarURL = URL(string: meme.user?.avatar ?? "") else {return viewForCard}
         
-        viewForCard.avatarImageView.sd_setImage(with: avatarURL)
+        viewForCard.avatarImageView.sd_setImage(with: avatarURL, placeholderImage: #imageLiteral(resourceName: "baby"), options: .continueInBackground)
         
         viewForCard.bottomView.tag = meme.userID!
         

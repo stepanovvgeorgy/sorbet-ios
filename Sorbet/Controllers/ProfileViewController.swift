@@ -27,8 +27,9 @@ class ProfileViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.indicator
     
-    var imagePicker: UIImagePickerController = UIImagePickerController()
     var bsImagePicker = ImagePickerController()
+    
+    let refreshControl = UIRefreshControl()
     
     var userAvatarImage: UIImage?
     
@@ -44,15 +45,20 @@ class ProfileViewController: UIViewController {
     
     var selectedMemeImage: UIImage?
     
+    var moreBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: self, action: #selector(actionMore(_:)))
+        barButtonItem.tintColor = UIColor.color.sunFlower
+        return barButtonItem
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                         
         if userID == nil {
             userID = (UserDefaults.standard.value(forKey: "user_id") as! Int)
+            navigationItem.setRightBarButton(moreBarButtonItem, animated: true)
         }
-        
-        imagePicker.delegate = self
-        
+                        
         collectionView.isHidden = true
         
         collectionView.register(UINib(nibName: "SingleMemeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: profileCellReuseIdentifier)
@@ -64,10 +70,19 @@ class ProfileViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadVC(_:)), name: NSNotification.Name(rawValue: "NotificationUserProfileUpdated"), object: nil)
         
+        refreshControl.addTarget(self, action: #selector(refreshSelf), for: .valueChanged)
+        
+        collectionView.refreshControl = self.refreshControl
+        
         getUserByID(userID!)
     }
     
-    @objc func reloadVC(_ notification: Notification) {
+    @objc func refreshSelf(_ sender: UIRefreshControl) {
+        reloadVC()
+        sender.endRefreshing()
+    }
+    
+    @objc func reloadVC(_ notification: Notification? = nil) {
         print("reloadProfileVC")
     }
 
@@ -108,7 +123,7 @@ class ProfileViewController: UIViewController {
         present(editProfileNavController, animated: true, completion: nil)
     }
     
-    @IBAction private func actionMore(_ sender: UIBarButtonItem) {
+    @objc private func actionMore(_ sender: UIBarButtonItem) {
         
         let userName = "@" + (user?.username)!
         
@@ -167,28 +182,34 @@ class ProfileViewController: UIViewController {
                 // User canceled selection.
             }, finish: { (assets) in
                 // User finished selection assets.
+                print("Finish assets.count = ", assets.count)
+                
                 if assets.count > 0 {
                     assets.forEach { (asset) in
-                        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, info) in
-                            
-                            let resize = CGSize(width: 1024, height: 768)
-
-                            NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
-                                if let returnedMeme = meme {
-                                    
-                                    self.memesArray.insert(returnedMeme, at: 0)
-                                    
-                                    self.total = self.total! + 1
-                                    
-                                    self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
-                                    
-                                    print(returnedMeme)
-                                    
-                                } else {
-                                    self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
-                                }
-                            }
-                        }
+                        print(asset)
+                        
+//                        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, info) in
+//
+//                            print("PHImageManager assets.count = ", assets.count)
+//
+//                            let resize = CGSize(width: 1024, height: 768)
+//                            NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
+//                                if let returnedMeme = meme {
+//
+//                                    self.memesArray.insert(returnedMeme, at: 0)
+//
+//                                    self.total = self.total! + 1
+//
+//                                    self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+//
+//                                    print(returnedMeme)
+//
+//                                } else {
+//                                    self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
+//                                }
+//                            }
+//
+//                        }
                     }
                 }
             })
@@ -225,7 +246,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         guard let memeImageURL = URL(string: "\(meme.imageName ?? "")") else {return cell}
         
-        cell.memeImageView.sd_setImage(with: memeImageURL)
+        cell.memeImageView.sd_setImage(with: memeImageURL, placeholderImage: #imageLiteral(resourceName: "icecream"), options: .continueInBackground)
                     
         return cell
     }
@@ -305,28 +326,3 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        
-        let resize = CGSize(width: 1024, height: 768)
-        
-        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: resize) { (meme) in
-            if let returnedMeme = meme {
-                
-                self.memesArray.insert(returnedMeme, at: 0)
-                
-                self.total = self.total! + 1
-                
-                self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
-                
-                print(returnedMeme)
-                
-            } else {
-                self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
-            }
-            picker.dismiss(animated: true)
-        }
-    }
-}
