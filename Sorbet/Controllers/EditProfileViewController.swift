@@ -67,7 +67,7 @@ class EditProfileViewController: UIViewController {
     }
     
     func sendNotificationUserProfileUpdated() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "NotificationUserProfileUpdated"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: SorbetNotifications.userProfileUpdated.rawValue), object: nil)
     }
 }
 

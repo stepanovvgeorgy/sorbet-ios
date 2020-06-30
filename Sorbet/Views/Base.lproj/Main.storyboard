@@ -811,6 +811,53 @@
             </objects>
             <point key="canvasLocation" x="2652" y="2288"/>
         </scene>
+        <!--Subs View Controller-->
+        <scene sceneID="ZGf-FD-fUE">
+            <objects>
+                <viewController storyboardIdentifier="SubsViewController" id="67j-Lq-cmT" customClass="SubsViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Czw-xQ-67X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3H-wU-3gP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Nt2-cS-rZt" firstAttribute="bottom" secondItem="N3H-wU-3gP" secondAttribute="bottom" id="NF2-lK-zVU"/>
+                            <constraint firstItem="Nt2-cS-rZt" firstAttribute="trailing" secondItem="N3H-wU-3gP" secondAttribute="trailing" id="X4f-Pf-aD2"/>
+                            <constraint firstItem="N3H-wU-3gP" firstAttribute="top" secondItem="Nt2-cS-rZt" secondAttribute="top" id="a4l-qw-MVK"/>
+                            <constraint firstItem="N3H-wU-3gP" firstAttribute="leading" secondItem="Nt2-cS-rZt" secondAttribute="leading" id="tBV-2z-sfb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nt2-cS-rZt"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="U0B-7n-Dwg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="on4-tv-CM1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5298.5507246376819" y="3028.7946428571427"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eZV-mV-Pzv">
+            <objects>
+                <navigationController storyboardIdentifier="SubsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="p1F-D0-zwe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="cV5-cB-5QI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.18036800619999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="67j-Lq-cmT" kind="relationship" relationship="rootViewController" id="z61-NB-dcl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXW-TX-VDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4388.4057971014499" y="3028.7946428571427"/>
+        </scene>
     </scenes>
     <resources>
         <image name="baby" width="512" height="512"/>

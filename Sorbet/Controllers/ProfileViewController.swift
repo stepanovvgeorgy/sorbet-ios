@@ -45,15 +45,12 @@ class ProfileViewController: UIViewController {
     
     var selectedMemeImage: UIImage?
     
-    var moreBarButtonItem: UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: self, action: #selector(actionMore(_:)))
-        barButtonItem.tintColor = UIColor.color.sunFlower
-        return barButtonItem
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+        
+        let moreBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: self, action: #selector(actionMore(_:)))
+        moreBarButtonItem.tintColor = UIColor.color.sunFlower
+        
         if userID == nil {
             userID = (UserDefaults.standard.value(forKey: "user_id") as! Int)
             navigationItem.setRightBarButton(moreBarButtonItem, animated: true)
@@ -68,7 +65,7 @@ class ProfileViewController: UIViewController {
         
         activityIndicator.centerInView(view)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadVC(_:)), name: NSNotification.Name(rawValue: "NotificationUserProfileUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadProfileAfterUpdate(_:)), name: NSNotification.Name(rawValue: SorbetNotifications.userProfileUpdated.rawValue), object: nil)
         
         refreshControl.addTarget(self, action: #selector(refreshSelf), for: .valueChanged)
         
@@ -78,12 +75,18 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func refreshSelf(_ sender: UIRefreshControl) {
-        reloadVC()
+        reloadCollectionViewData()
         sender.endRefreshing()
     }
     
-    @objc func reloadVC(_ notification: Notification? = nil) {
-        print("reloadProfileVC")
+    @objc func reloadCollectionViewData(_ notification: Notification? = nil) {
+        
+    }
+    
+    @objc func reloadProfileAfterUpdate(_ notification: Notification?) {
+        user = nil
+        getUserByID(userID!)
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     func getUserByID(_ id: Int) {
@@ -188,28 +191,28 @@ class ProfileViewController: UIViewController {
                     assets.forEach { (asset) in
                         print(asset)
                         
-//                        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, info) in
-//
-//                            print("PHImageManager assets.count = ", assets.count)
-//
-//                            let resize = CGSize(width: 1024, height: 768)
-//                            NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
-//                                if let returnedMeme = meme {
-//
-//                                    self.memesArray.insert(returnedMeme, at: 0)
-//
-//                                    self.total = self.total! + 1
-//
-//                                    self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
-//
-//                                    print(returnedMeme)
-//
-//                                } else {
-//                                    self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
-//                                }
-//                            }
-//
-//                        }
+                        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, info) in
+
+                            print("PHImageManager assets.count = ", assets.count)
+
+                            let resize = CGSize(width: 1024, height: 768)
+                            NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
+                                if let returnedMeme = meme {
+
+                                    self.memesArray.insert(returnedMeme, at: 0)
+
+                                    self.total = self.total! + 1
+
+                                    self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+
+                                    print(returnedMeme)
+
+                                } else {
+                                    self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
+                                }
+                            }
+
+                        }
                     }
                 }
             })
