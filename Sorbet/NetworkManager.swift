@@ -32,12 +32,12 @@ class NetworkManager {
     
     var headersWithToken: HTTPHeaders {
         get {
-            let headersDict: [String: String] = [
+            let headersDictionary: [String: String] = [
                 "Content-Type": "application/json",
                 "token": UserDefaults.standard.value(forKey: "token") as! String
             ]
             
-            let headers = HTTPHeaders(headersDict)
+            let headers = HTTPHeaders(headersDictionary)
             
             return headers
         }
@@ -102,7 +102,7 @@ class NetworkManager {
     }
     
     func getUserByID(_ id: Int?, _ completion: @escaping (_ user: User?) -> (), _ failure: @escaping (_ error: String) -> ()) {
-     
+        
         if let userID = id {
             
             guard let url = URL(string: "\(serverUrl)/user/\(userID)") else {return}
@@ -116,18 +116,18 @@ class NetworkManager {
                     print(jsonData)
                     
                     if response.response?.statusCode == 200 {
-      
+                        
                         let user = User(id: jsonData["id"].intValue,
                                         token: nil,
                                         username: jsonData["username"].stringValue,
                                         rating: jsonData["rating"].intValue,
                                         expiredDate: nil,
                                         avatar: "\(self.avatarsUrl)/\(jsonData["avatar"].stringValue)",
-                                        firstName: jsonData["first_name"].stringValue,
-                                        lastName: jsonData["last_name"].stringValue,
-                                        about: jsonData["about"].stringValue,
-                                        password: nil,
-                                        email: nil)
+                            firstName: jsonData["first_name"].stringValue,
+                            lastName: jsonData["last_name"].stringValue,
+                            about: jsonData["about"].stringValue,
+                            password: nil,
+                            email: nil)
                         
                         completion(user)
                         
@@ -156,21 +156,21 @@ class NetworkManager {
             ]
             
             AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
-                  switch response.result {
-                  case .success(let value):
+                switch response.result {
+                case .success(let value):
                     
-                      let jsonData = JSON(value)
-                      
-                      print(jsonData)
-
-                      if response.response?.statusCode == 200 {
+                    let jsonData = JSON(value)
+                    
+                    print(jsonData)
+                    
+                    if response.response?.statusCode == 200 {
                         print("Data was update")
                         completion()
-                      }
-                      
-                  case .failure(let error):
-                      print(error.localizedDescription)
-                  }
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
@@ -193,7 +193,7 @@ class NetworkManager {
             let jsonData = JSON(result.data as Any)
             
             print(jsonData)
-
+            
             let memeImageURL = "\(self.uploadsUrl)/\(jsonData["image_name"].stringValue)"
             
             let meme = Meme(id: jsonData["id"].intValue, imageName: memeImageURL, userID: jsonData["UserId"].intValue, user: nil)
@@ -227,15 +227,15 @@ class NetworkManager {
                                             rating: item["User"]["rating"].intValue,
                                             expiredDate: nil,
                                             avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
-                                            firstName: item["User"]["first_name"].stringValue,
-                                            lastName: item["User"]["last_name"].stringValue,
-                                            about: nil,
-                                            password: nil,
-                                            email: nil)
+                                firstName: item["User"]["first_name"].stringValue,
+                                lastName: item["User"]["last_name"].stringValue,
+                                about: nil,
+                                password: nil,
+                                email: nil)
                             
                             let meme = Meme(id: item["id"].intValue,
                                             imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
-                                            userID: item["UserId"].intValue, user: user)
+                                userID: item["UserId"].intValue, user: user)
                             memesArray.append(meme)
                         })
                         
@@ -274,16 +274,16 @@ class NetworkManager {
                                         rating: item["User"]["rating"].intValue,
                                         expiredDate: nil,
                                         avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
-                                        firstName: item["User"]["first_name"].stringValue,
-                                        lastName: item["User"]["last_name"].stringValue,
-                                        about: nil,
-                                        password: nil,
-                                        email: nil)
+                            firstName: item["User"]["first_name"].stringValue,
+                            lastName: item["User"]["last_name"].stringValue,
+                            about: nil,
+                            password: nil,
+                            email: nil)
                         
                         let meme = Meme(id: item["id"].intValue,
                                         imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
-                                        userID: item["UserId"].intValue,
-                                        user: user)
+                            userID: item["UserId"].intValue,
+                            user: user)
                         memesArray.append(meme)
                     })
                     
@@ -295,6 +295,53 @@ class NetworkManager {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func searchUserByUsername(_ username: String?, _ completion: @escaping ([User]) -> (), _ failure: @escaping () -> ()) {
+        
+        if username != nil {
+            
+            guard let url = URL(string: "\(serverUrl)/user/search") else {return}
+            
+            let parameters: [String: String] = [
+                "username": username!
+            ]
+            
+            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    if response.response?.statusCode == 200 {
+                        
+                        var users: [User] = []
+                        
+                        let jsonData = JSON(value)
+                        
+                        jsonData.array!.forEach { (item) in
+                            let user = User(id: item["id"].intValue,
+                                            token: nil,
+                                            username: item["username"].stringValue,
+                                            rating: nil, expiredDate: nil,
+                                            avatar: "\(self.avatarsUrl)/\(item["avatar"].stringValue)",
+                                firstName: nil,
+                                lastName: nil,
+                                about: nil,
+                                password: nil,
+                                email: nil)
+                            users.append(user)
+                        }
+                        
+                        completion(users)
+                        
+                    }
+                    
+                case .failure(let error):
+                    failure()
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            print("Username = nil")
         }
         
     }

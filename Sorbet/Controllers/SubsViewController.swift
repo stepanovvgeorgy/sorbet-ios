@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubsViewController: UIViewController {
+class SubsViewController: SorbetViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

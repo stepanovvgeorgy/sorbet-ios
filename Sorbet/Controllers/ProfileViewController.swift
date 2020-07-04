@@ -14,7 +14,7 @@ import Photos
 fileprivate let profileCellReuseIdentifier = "ProfileCell"
 fileprivate let headerCellReuseIdentifier = "HeaderCell"
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: SorbetViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -27,7 +27,18 @@ class ProfileViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.indicator
     
-    var bsImagePicker = ImagePickerController()
+    var bsImagePicker: ImagePickerController = {
+        let imagePicker = ImagePickerController()
+        imagePicker.settings.selection.max = 5
+        imagePicker.settings.theme.selectionStyle = .numbered
+        imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
+        imagePicker.settings.selection.unselectOnReachingMax = true
+        imagePicker.navigationBar.barTintColor = #colorLiteral(red: 0.1803680062, green: 0.180406034, blue: 0.1803655922, alpha: 1)
+        imagePicker.navigationBar.isTranslucent = false
+        imagePicker.navigationBar.tintColor = UIColor.color.sunFlower
+        imagePicker.settings.theme.backgroundColor = #colorLiteral(red: 0.1803680062, green: 0.180406034, blue: 0.1803655922, alpha: 1)
+        return imagePicker
+    }()
     
     let refreshControl = UIRefreshControl()
     
@@ -44,8 +55,9 @@ class ProfileViewController: UIViewController {
     var memesArray = Array<Meme>()
     
     var selectedMemeImage: UIImage?
-    
+        
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         let moreBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: self, action: #selector(actionMore(_:)))
@@ -70,7 +82,7 @@ class ProfileViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshSelf), for: .valueChanged)
         
         collectionView.refreshControl = self.refreshControl
-        
+                
         getUserByID(userID!)
     }
     
@@ -178,43 +190,53 @@ class ProfileViewController: UIViewController {
 
             self.presentImagePicker(self.bsImagePicker, select: { (asset) in
                 // User selected an asset. Do something with it. Perhaps begin processing/upload?
-                print(asset)
+                print("User selected an asset")
+                                                
             }, deselect: { (asset) in
-                // User deselected an asset. Cancel whatever you did when asset was selected.
+                
+                print("User deselected an asset")
             }, cancel: { (assets) in
                 // User canceled selection.
+                
+                
+                
+                print("User canceled selection.")
             }, finish: { (assets) in
-                // User finished selection assets.
-                print("Finish assets.count = ", assets.count)
                 
                 if assets.count > 0 {
-                    assets.forEach { (asset) in
-                        print(asset)
+                    
+                    let options = PHImageRequestOptions()
+                    options.isSynchronous = true
+                    
+                       assets.forEach { (asset) in
+                           print(asset)
                         
-                        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, info) in
+                           PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: options) { (image, info) in
 
-                            print("PHImageManager assets.count = ", assets.count)
+                               print("PHImageManager assets.count = ", assets.count)
 
-                            let resize = CGSize(width: 1024, height: 768)
-                            NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
-                                if let returnedMeme = meme {
+                               let resize = CGSize(width: 1024, height: 768)
+                               NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
+                                   if let returnedMeme = meme {
 
-                                    self.memesArray.insert(returnedMeme, at: 0)
+                                       self.memesArray.insert(returnedMeme, at: 0)
 
-                                    self.total = self.total! + 1
+                                       self.total = self.total! + 1
 
-                                    self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+                                       self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
 
-                                    print(returnedMeme)
+                                       print(returnedMeme)
 
-                                } else {
-                                    self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
-                                }
-                            }
+                                   } else {
+                                       self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
+                                   }
+                               }
 
-                        }
-                    }
+                           }
+                       }
                 }
+                
+                print("Finish assets.count = ", assets.count)
             })
         }
         

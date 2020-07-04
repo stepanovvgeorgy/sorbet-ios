@@ -24,9 +24,7 @@ class InnerTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        delegate = self
-        
+                            
         if AppDelegate.iosVersion < 13.0 {
             
             self.tabBar.items?.forEach({ (item) in

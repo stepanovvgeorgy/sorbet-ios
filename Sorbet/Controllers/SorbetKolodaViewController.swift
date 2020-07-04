@@ -12,7 +12,7 @@ import SDWebImage
 
 fileprivate let segueToProfileViewControllerID = "SegueToProfileViewController"
 
-class SorbetKolodaViewController: UIViewController {
+class SorbetKolodaViewController: SorbetViewController {
     
     @IBOutlet weak var kolodaView: KolodaView!
     

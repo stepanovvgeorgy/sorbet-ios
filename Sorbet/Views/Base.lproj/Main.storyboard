@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gab-Oy-uew">
                                 <rect key="frame" x="20" y="92" width="374" height="172"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username или email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPt-5h-147">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPt-5h-147">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SKc-Eu-VNl"/>
@@ -324,6 +324,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="k0s-dZ-HfX" kind="relationship" relationship="viewControllers" id="Ffm-hY-UuW"/>
+                        <segue destination="tbu-7e-JUS" kind="relationship" relationship="viewControllers" id="7X1-vz-4YH"/>
                         <segue destination="wtm-0P-0x0" kind="relationship" relationship="viewControllers" id="AjX-Mk-fwT"/>
                     </connections>
                 </tabBarController>
@@ -741,6 +742,61 @@
             <point key="canvasLocation" x="3779.7101449275365" y="1879.6875"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="xLY-aU-1s0">
+            <objects>
+                <navigationController id="tbu-7e-JUS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="search" id="ZS8-iN-ZLr"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="nbm-Sq-AJ1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.18039215689999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LYW-Ls-5I9" kind="relationship" relationship="rootViewController" id="dg5-ET-nFP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OqW-VB-5n3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-204" y="3209"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="3Fy-hm-5ze">
+            <objects>
+                <viewController id="LYW-Ls-5I9" customClass="SearchViewController" customModule="Sorbet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wul-Fu-nG7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-pQ-JWz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18039215689999999" green="0.18040603399999999" blue="0.18036559220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kCU-pQ-JWz" firstAttribute="top" secondItem="Miz-dv-eHx" secondAttribute="top" id="XIK-Ik-Thh"/>
+                            <constraint firstItem="Miz-dv-eHx" firstAttribute="bottom" secondItem="kCU-pQ-JWz" secondAttribute="bottom" id="d09-vc-L7J"/>
+                            <constraint firstItem="kCU-pQ-JWz" firstAttribute="leading" secondItem="Miz-dv-eHx" secondAttribute="leading" id="hAn-k6-5m8"/>
+                            <constraint firstItem="Miz-dv-eHx" firstAttribute="trailing" secondItem="kCU-pQ-JWz" secondAttribute="trailing" id="iy0-DH-fXz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Miz-dv-eHx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PZi-4e-KKC">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="kCU-pQ-JWz" id="tZa-16-3JP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cLH-BE-3qh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747.82608695652175" y="3208.9285714285711"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="O16-ab-zKV">
             <objects>
                 <navigationController storyboardIdentifier="JokeEditorNavigationController" id="ltt-xB-aRO" sceneMemberID="viewController">
@@ -863,6 +919,7 @@
         <image name="baby" width="512" height="512"/>
         <image name="icecream" width="25" height="25"/>
         <image name="return" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
         <image name="send" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
     </resources>

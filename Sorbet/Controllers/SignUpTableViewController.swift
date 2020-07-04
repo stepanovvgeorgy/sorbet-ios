@@ -36,6 +36,8 @@ class SignUpTableViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.5998017788, green: 0.2449732423, blue: 0.7006943822, alpha: 1)
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
+        navigationController?.navigationBar.barStyle = .black
+        
         navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(toSignInViewController(_:)))
         navigationItem.leftBarButtonItem = newBackButton
@@ -80,7 +82,7 @@ class SignUpTableViewController: UITableViewController {
         
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9791200757, green: 0.7600466609, blue: 0, alpha: 1)
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        
+        navigationController?.navigationBar.barStyle = .default
         navigationController?.popViewController(animated: true)
         
     }

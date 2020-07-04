@@ -11,7 +11,7 @@ import UIKit
 fileprivate let textFieldCellReuseIdentifier = "TextFieldCell"
 fileprivate let changeAvatarCellReuseIdentifier = "ChangeAvatarCell"
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: SorbetViewController {
 
     @IBOutlet weak var tableView: UITableView!
     

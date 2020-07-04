@@ -12,7 +12,7 @@ fileprivate let postHeaderReuseIdentifier = "PostHeaderCell"
 fileprivate let postMemeReuseIdentifier = "PostMemeCell"
 fileprivate let postCommentReuseIdentifier = "PostCommentCell"
 
-class PostViewController: UIViewController {
+class PostViewController: SorbetViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentFormView: UIView!
