@@ -149,6 +149,8 @@
                 <outlet property="fullNameLabel" destination="U38-9i-Ijo" id="NJe-ab-6Kp"/>
                 <outlet property="newPostButton" destination="xXs-KN-ih6" id="HY9-ot-gde"/>
                 <outlet property="subscribeButton" destination="f07-Kg-cio" id="mko-Qj-lfz"/>
+                <outlet property="subscriptionsCountLabel" destination="93Y-uh-YQt" id="C2W-1V-Zfy"/>
+                <outlet property="subscriptionsLabel" destination="sxN-YF-1ZG" id="KFg-Nv-RQp"/>
                 <outlet property="totalLabel" destination="T07-pv-Xew" id="vh9-Ia-fpb"/>
                 <outlet property="view" destination="ggm-5c-iu1" id="0Bo-9B-o7C"/>
             </connections>

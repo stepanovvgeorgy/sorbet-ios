@@ -184,22 +184,17 @@ class ProfileViewController: SorbetViewController {
     @objc private func showNewPostActionSheet(_ sender: UIButton?) {
         let actionSheet = UIAlertController(title: nil, message: "Что будем публиковать?", preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Ничего", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
         
-        let memeAction = UIAlertAction(title: "Just meme", style: .default) { (action) in
+        let memeAction = UIAlertAction(title: "Мем", style: .default) { (action) in
 
             self.presentImagePicker(self.bsImagePicker, select: { (asset) in
                 // User selected an asset. Do something with it. Perhaps begin processing/upload?
                 print("User selected an asset")
-                                                
             }, deselect: { (asset) in
-                
                 print("User deselected an asset")
             }, cancel: { (assets) in
                 // User canceled selection.
-                
-                
-                
                 print("User canceled selection.")
             }, finish: { (assets) in
                 
@@ -236,7 +231,6 @@ class ProfileViewController: SorbetViewController {
                        }
                 }
                 
-                print("Finish assets.count = ", assets.count)
             })
         }
         
@@ -314,6 +308,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             headerCell.totalLabel.text = "\(total ?? 0)"
             
+            let subsctiptionsTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionShowSubscriptions))
+            
+            headerCell.subscriptionsCountLabel.addGestureRecognizer(subsctiptionsTapGesture)
+            headerCell.subscriptionsLabel.addGestureRecognizer(subsctiptionsTapGesture)
+            
             if user?.id == currentUserID {
                 headerCell.subscribeButton.isHidden = true
                 headerCell.newPostButton.isHidden = false
@@ -324,7 +323,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
 
             headerCell.fullNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")\n\(user?.about ?? "")"
-
+                        
             guard let avatarURL = URL(string: user?.avatar ?? "") else {return headerCell}
 
             headerCell.avatarImageView.sd_setImage(with: avatarURL, placeholderImage: #imageLiteral(resourceName: "baby"), options: .highPriority) { (image, error, cache, url) in
@@ -336,6 +335,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionReusableView()
         }
 
+    }
+    
+    @objc func actionShowSubscriptions() {
+        if let userID = self.userID {
+            let subscriptionsViewController = storyboard?.instantiateViewController(withIdentifier: "SubscriptionsViewController") as! SubscriptionsViewController
+            subscriptionsViewController.userID = userID
+            navigationController?.pushViewController(subscriptionsViewController, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

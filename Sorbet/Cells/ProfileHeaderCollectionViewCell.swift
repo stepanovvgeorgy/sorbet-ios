@@ -16,6 +16,8 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var newPostButton: UIButton!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var subscriptionsCountLabel: UILabel!
+    @IBOutlet weak var subscriptionsLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +25,8 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
         avatarImageView.layer.cornerRadius = 74/2
         setButtonBorder(subscribeButton)
         setButtonBorder(newPostButton)
+        subscriptionsCountLabel.isUserInteractionEnabled = true
+        subscriptionsLabel.isUserInteractionEnabled = true
     }
     
     private func setButtonBorder(_ button: UIButton?) {

@@ -340,10 +340,53 @@ class NetworkManager {
                     print(error.localizedDescription)
                 }
             }
-        } else {
-            print("Username = nil")
         }
-        
     }
     
+    func getSubscriptionsByUserID(_ id: Int?, page: Int = 1, limit: Int = 15, completion: @escaping (_ users: [User], _ total: Int?) -> (), failure: @escaping (_ error: Any?) -> ()) {
+        if let userID = id {
+            
+            guard let url = URL(string: "\(serverUrl)/subscriptions/\(userID)?page=\(page)&limit=\(limit)") else {return}
+            
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(let data):
+                    
+                    let jsonData = JSON(data)
+                    
+                    if response.response?.statusCode == 200 {
+                        
+                        var users = [User]()
+                        
+                        jsonData.array!.forEach { (item) in
+                            let user = User(id: item["id"].intValue,
+                                            token: nil,
+                                            username: item["username"].stringValue,
+                                            rating: nil,
+                                            expiredDate: nil,
+                                            avatar: "\(self.avatarsUrl)/\(item["avatar"].stringValue)",
+                                            firstName: nil,
+                                            lastName: nil,
+                                            about: nil,
+                                            password: nil,
+                                            email: nil)
+                            users.append(user)
+                        }
+                        
+                        let total = Int((response.response?.headers["total"])!)
+                        
+                        completion(users, total)
+                        
+                    } else {
+                        print(jsonData)
+                        failure(jsonData)
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    failure(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

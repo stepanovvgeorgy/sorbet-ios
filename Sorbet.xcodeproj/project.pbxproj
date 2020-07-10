@@ -22,6 +22,7 @@
 		D32397512485CD6600CD4A57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397502485CD6600CD4A57 /* User.swift */; };
 		D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397522485DDED00CD4A57 /* InnerTabBarController.swift */; };
 		D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397542487022900CD4A57 /* ProfileViewController.swift */; };
+		D3355B5D24B75E2E00D61664 /* SorbetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3355B5C24B75E2E00D61664 /* SorbetButton.swift */; };
 		D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */; };
 		D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */; };
 		D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */; };
@@ -51,7 +52,7 @@
 		D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */; };
 		D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */; };
 		D3871EB224AB6902008B047B /* SorbetNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB124AB6902008B047B /* SorbetNotifications.swift */; };
-		D3871EB424AB72E8008B047B /* SubsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB324AB72E8008B047B /* SubsViewController.swift */; };
+		D3871EB424AB72E8008B047B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB324AB72E8008B047B /* SubscriptionsViewController.swift */; };
 		D3871EB624ACAE13008B047B /* SorbetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB524ACAE13008B047B /* SorbetViewController.swift */; };
 		D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */; };
 		D3F27F61249D07310077897D /* JokeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F27F60249D07310077897D /* JokeEditorViewController.swift */; };
@@ -79,6 +80,7 @@
 		D32397502485CD6600CD4A57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D32397522485DDED00CD4A57 /* InnerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerTabBarController.swift; sourceTree = "<group>"; };
 		D32397542487022900CD4A57 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D3355B5C24B75E2E00D61664 /* SorbetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetButton.swift; sourceTree = "<group>"; };
 		D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMemeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -108,7 +110,7 @@
 		D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D3871EB124AB6902008B047B /* SorbetNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetNotifications.swift; sourceTree = "<group>"; };
-		D3871EB324AB72E8008B047B /* SubsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsViewController.swift; sourceTree = "<group>"; };
+		D3871EB324AB72E8008B047B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		D3871EB524ACAE13008B047B /* SorbetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetViewController.swift; sourceTree = "<group>"; };
 		D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D3F27F60249D07310077897D /* JokeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeEditorViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				D323974A2484E97600CD4A57 /* Helper.swift */,
 				D33BE5502487EB06003C4499 /* ImageHandler.swift */,
 				D3871EB124AB6902008B047B /* SorbetNotifications.swift */,
+				D3355B5C24B75E2E00D61664 /* SorbetButton.swift */,
 				D33BE540248717EE003C4499 /* Cells */,
 				D323974E2485CD1200CD4A57 /* Views */,
 				D323974D2485CD0B00CD4A57 /* Models */,
@@ -195,7 +198,7 @@
 				D3F27F60249D07310077897D /* JokeEditorViewController.swift */,
 				D363B45024A33BB800998283 /* KolodaOverlayView.swift */,
 				D363B45424A4B4DE00998283 /* KolodaViewCard.swift */,
-				D3871EB324AB72E8008B047B /* SubsViewController.swift */,
+				D3871EB324AB72E8008B047B /* SubscriptionsViewController.swift */,
 				D3871EB524ACAE13008B047B /* SorbetViewController.swift */,
 				D373DF3A24AF48E200B3BC68 /* SearchViewController.swift */,
 			);
@@ -394,6 +397,7 @@
 				D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
 				D3785B03248B246F0070B2BA /* CommentTableViewCell.swift in Sources */,
+				D3355B5D24B75E2E00D61664 /* SorbetButton.swift in Sources */,
 				D3871EB624ACAE13008B047B /* SorbetViewController.swift in Sources */,
 				D33BE55D24887494003C4499 /* Meme.swift in Sources */,
 				D373DF3B24AF48E200B3BC68 /* SearchViewController.swift in Sources */,
@@ -407,7 +411,7 @@
 				D33BE5492487D007003C4499 /* UIColor+Extension.swift in Sources */,
 				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
 				D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */,
-				D3871EB424AB72E8008B047B /* SubsViewController.swift in Sources */,
+				D3871EB424AB72E8008B047B /* SubscriptionsViewController.swift in Sources */,
 				D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */,
 				D373DF3E24AF4CE200B3BC68 /* UserTableViewCell.swift in Sources */,
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,

@@ -13,6 +13,7 @@ fileprivate let reuseIdentifier = "UserCell"
 class SearchViewController: SorbetViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchLabel: UILabel!
     
     let activityIndicator = UIActivityIndicatorView.indicator
     
@@ -65,12 +66,16 @@ class SearchViewController: SorbetViewController {
             self.users.append(contentsOf: users)
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
-            print("success")
+            UIView.animate(withDuration: 0.1) {
+                self.searchLabel.alpha = 0
+            }
         }) {
             self.users.removeAll()
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
-            print("failure")
+            UIView.animate(withDuration: 0.1) {
+                self.searchLabel.alpha = 0.5
+            }
         }
         
     }
@@ -101,7 +106,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let user = users[indexPath.row]
         
-        cell.usernameLabel.text = "@" + user.username!
+        cell.usernameLabel.text = user.username!
         
         guard let avatarURL = URL(string: user.avatar!) else {return cell}
         
