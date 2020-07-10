@@ -20,10 +20,18 @@ class ProfileViewController: SorbetViewController {
     
     var user: User? {
         didSet {
-            navigationItem.title = "@\(user?.username ?? "user")"
+            
+            navigationItem.title = user?.username ?? "user"
+            
+            NetworkManager.shared.getSubscriptionsCountByUserID(self.userID) { (count) in
+                self.subscriptionsCount = count!
+            }
+            
             self.getUserMemes()
         }
     }
+    
+    var subscriptionsCount = 0
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.indicator
     
@@ -111,7 +119,6 @@ class ProfileViewController: SorbetViewController {
     
     func getUserMemes() {
         NetworkManager.shared.getMemesByUserID(user?.id, page: page, limit: limit) { (memes, total) in
-            print(memes)
             self.total = total
             self.memesArray.append(contentsOf: memes)
             self.collectionView.reloadData()
@@ -158,9 +165,7 @@ class ProfileViewController: SorbetViewController {
                 Helper.shared.logout {
                     let signInNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "SignInNavigationController")
                     signInNavigationController?.modalPresentationStyle = .fullScreen
-                    self.present(signInNavigationController!, animated: true) {
-                        print("logout has been done")
-                    }
+                    self.present(signInNavigationController!, animated: true)
                 }
             }
             
@@ -204,11 +209,8 @@ class ProfileViewController: SorbetViewController {
                     options.isSynchronous = true
                     
                        assets.forEach { (asset) in
-                           print(asset)
                         
                            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: options) { (image, info) in
-
-                               print("PHImageManager assets.count = ", assets.count)
 
                                let resize = CGSize(width: 1024, height: 768)
                                NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
@@ -219,8 +221,6 @@ class ProfileViewController: SorbetViewController {
                                        self.total = self.total! + 1
 
                                        self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
-
-                                       print(returnedMeme)
 
                                    } else {
                                        self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
@@ -292,8 +292,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
              if memesArray.count < total! {
                  page = page + 1
                  getUserMemes()
-             } else {
-                 print("All posts loaded")
              }
          }
     }
@@ -307,6 +305,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             let currentUserID = UserDefaults.standard.value(forKey: "user_id") as! Int
             
             headerCell.totalLabel.text = "\(total ?? 0)"
+            
+            headerCell.subscriptionsCountLabel.text = "\(subscriptionsCount)"
             
             let subsctiptionsTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionShowSubscriptions))
             

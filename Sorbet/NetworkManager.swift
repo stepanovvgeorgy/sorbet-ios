@@ -112,9 +112,7 @@ class NetworkManager {
                 switch response.result {
                 case .success(let value):
                     let jsonData = JSON(value)
-                    
-                    print(jsonData)
-                    
+                                        
                     if response.response?.statusCode == 200 {
                         
                         let user = User(id: jsonData["id"].intValue,
@@ -157,14 +155,9 @@ class NetworkManager {
             
             AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
                 switch response.result {
-                case .success(let value):
-                    
-                    let jsonData = JSON(value)
-                    
-                    print(jsonData)
-                    
+                case .success(_):
+                                                            
                     if response.response?.statusCode == 200 {
-                        print("Data was update")
                         completion()
                     }
                     
@@ -191,8 +184,6 @@ class NetworkManager {
         }, to: "\(serverUrl)\(url)", method: .post).response { result in
             
             let jsonData = JSON(result.data as Any)
-            
-            print(jsonData)
             
             let memeImageURL = "\(self.uploadsUrl)/\(jsonData["image_name"].stringValue)"
             
@@ -347,7 +338,7 @@ class NetworkManager {
         if let userID = id {
             
             guard let url = URL(string: "\(serverUrl)/subscriptions/\(userID)?page=\(page)&limit=\(limit)") else {return}
-            
+                        
             AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
                 switch response.result {
                 case .success(let data):
@@ -359,12 +350,12 @@ class NetworkManager {
                         var users = [User]()
                         
                         jsonData.array!.forEach { (item) in
-                            let user = User(id: item["id"].intValue,
+                            let user = User(id: item["User"]["id"].intValue,
                                             token: nil,
-                                            username: item["username"].stringValue,
+                                            username: item["User"]["username"].stringValue,
                                             rating: nil,
                                             expiredDate: nil,
-                                            avatar: "\(self.avatarsUrl)/\(item["avatar"].stringValue)",
+                                            avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
                                             firstName: nil,
                                             lastName: nil,
                                             about: nil,
@@ -385,6 +376,30 @@ class NetworkManager {
                 case .failure(let error):
                     print(error.localizedDescription)
                     failure(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func getSubscriptionsCountByUserID(_ id: Int?, _ completion: @escaping (_ count: Int?) -> ()) {
+        if let userID = id {
+            
+            guard let url = URL(string: "\(serverUrl)/subscriptions/count/\(userID)") else {return}
+            
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let jsonData = JSON(value)
+                    
+                    if response.response?.statusCode == 200 {
+                        completion(jsonData["count"].intValue)
+                    } else {
+                        print(jsonData)
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         }

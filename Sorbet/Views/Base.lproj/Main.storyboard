@@ -898,7 +898,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nt2-cS-rZt"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Подписки" id="U0B-7n-Dwg"/>
+                    <navigationItem key="navigationItem" title="Подписки" id="U0B-7n-Dwg">
+                        <barButtonItem key="backBarButtonItem" title=" " id="eA6-Kc-4au"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="N3H-wU-3gP" id="nT4-FW-8Kq"/>
                     </connections>
