@@ -94,6 +94,7 @@ extension SubscriptionsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
         let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
@@ -101,6 +102,7 @@ extension SubscriptionsViewController: UITableViewDelegate, UITableViewDataSourc
         
         navigationController?.pushViewController(profileVC, animated: true)
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56
