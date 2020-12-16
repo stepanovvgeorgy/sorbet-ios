@@ -8,24 +8,47 @@
 
 import UIKit
 import SDWebImage
+import BSImagePicker
+import Photos
 
 fileprivate let profileCellReuseIdentifier = "ProfileCell"
 fileprivate let headerCellReuseIdentifier = "HeaderCell"
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: SorbetViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var user: User? {
         didSet {
-            navigationItem.title = "id\(user?.id ?? 0)"
-            self.getUserPosts(userID: user?.id)
+            
+            navigationItem.title = user?.username ?? "user"
+            
+            NetworkManager.shared.getSubscriptionsCountByUserID(self.userID) { (count) in
+                self.subscriptionsCount = count!
+            }
+            
+            self.getUserMemes()
         }
     }
     
+    var subscriptionsCount = 0
+    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.indicator
     
-    var imagePicker: UIImagePickerController = UIImagePickerController()
+    var bsImagePicker: ImagePickerController = {
+        let imagePicker = ImagePickerController()
+        imagePicker.settings.selection.max = 5
+        imagePicker.settings.theme.selectionStyle = .numbered
+        imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
+        imagePicker.settings.selection.unselectOnReachingMax = true
+        imagePicker.navigationBar.barTintColor = #colorLiteral(red: 0.1803680062, green: 0.180406034, blue: 0.1803655922, alpha: 1)
+        imagePicker.navigationBar.isTranslucent = false
+        imagePicker.navigationBar.tintColor = UIColor.color.sunFlower
+        imagePicker.settings.theme.backgroundColor = #colorLiteral(red: 0.1803680062, green: 0.180406034, blue: 0.1803655922, alpha: 1)
+        return imagePicker
+    }()
+    
+    let refreshControl = UIRefreshControl()
     
     var userAvatarImage: UIImage?
     
@@ -34,23 +57,25 @@ class ProfileViewController: UIViewController {
     var userID: Int?
     
     var page: Int = 1
-    var limit: Int = 15
+    var limit: Int = 20
     var total: Int?
-    var postsArray = Array<Post>()
     
-    var selectedPost: Post?
+    var memesArray = Array<Meme>()
+    
     var selectedMemeImage: UIImage?
-    
+        
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        let moreBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: self, action: #selector(actionMore(_:)))
+        moreBarButtonItem.tintColor = UIColor.color.sunFlower
         
         if userID == nil {
             userID = (UserDefaults.standard.value(forKey: "user_id") as! Int)
+            navigationItem.setRightBarButton(moreBarButtonItem, animated: true)
         }
-        
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        
+                        
         collectionView.isHidden = true
         
         collectionView.register(UINib(nibName: "SingleMemeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: profileCellReuseIdentifier)
@@ -60,15 +85,28 @@ class ProfileViewController: UIViewController {
         
         activityIndicator.centerInView(view)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadVC(_:)), name: NSNotification.Name(rawValue: "NotificationUserProfileUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadProfileAfterUpdate(_:)), name: NSNotification.Name(rawValue: SorbetNotifications.userProfileUpdated.rawValue), object: nil)
         
+        refreshControl.addTarget(self, action: #selector(refreshSelf), for: .valueChanged)
+        
+        collectionView.refreshControl = self.refreshControl
+                
         getUserByID(userID!)
     }
     
-    @objc func reloadVC(_ notification: Notification) {
+    @objc func refreshSelf(_ sender: UIRefreshControl) {
+        reloadCollectionViewData()
+        sender.endRefreshing()
+    }
+    
+    @objc func reloadCollectionViewData(_ notification: Notification? = nil) {
+        
+    }
+    
+    @objc func reloadProfileAfterUpdate(_ notification: Notification?) {
         user = nil
-        activityIndicator.startAnimating()
         getUserByID(userID!)
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     func getUserByID(_ id: Int) {
@@ -79,17 +117,14 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func getUserPosts(userID: Int?) {
-        if let userID = userID {
-            NetworkManager.shared.getUserPostsByID(userID, page: page, limit: limit) { (posts, total) in
-                self.total = Int(total)
-                self.postsArray.append(contentsOf: posts)
-                self.collectionView.isHidden = false
-                self.activityIndicator.stopAnimating()
-                self.collectionView.reloadData()
-            }
+    func getUserMemes() {
+        NetworkManager.shared.getMemesByUserID(user?.id, page: page, limit: limit) { (memes, total) in
+            self.total = total
+            self.memesArray.append(contentsOf: memes)
+            self.collectionView.reloadData()
+            self.collectionView.isHidden = false
+            self.activityIndicator.stopAnimating()
         }
-    
     }
     
     override func viewWillLayoutSubviews() {
@@ -110,9 +145,9 @@ class ProfileViewController: UIViewController {
         present(editProfileNavController, animated: true, completion: nil)
     }
     
-    @IBAction private func actionMore(_ sender: UIBarButtonItem) {
+    @objc private func actionMore(_ sender: UIBarButtonItem) {
         
-        let userName = (user?.firstName)! + " " + (user?.lastName)!
+        let userName = "@" + (user?.username)!
         
         let actionSheet = UIAlertController(title: nil, message: userName, preferredStyle: .actionSheet)
                 
@@ -130,9 +165,7 @@ class ProfileViewController: UIViewController {
                 Helper.shared.logout {
                     let signInNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "SignInNavigationController")
                     signInNavigationController?.modalPresentationStyle = .fullScreen
-                    self.present(signInNavigationController!, animated: true) {
-                        print("logout has been done")
-                    }
+                    self.present(signInNavigationController!, animated: true)
                 }
             }
             
@@ -156,10 +189,49 @@ class ProfileViewController: UIViewController {
     @objc private func showNewPostActionSheet(_ sender: UIButton?) {
         let actionSheet = UIAlertController(title: nil, message: "Что будем публиковать?", preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Ничего", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
         
-        let memeAction = UIAlertAction(title: "Just meme", style: .default) { (action) in
-            self.present(self.imagePicker, animated: true, completion: nil)
+        let memeAction = UIAlertAction(title: "Мем", style: .default) { (action) in
+
+            self.presentImagePicker(self.bsImagePicker, select: { (asset) in
+                // User selected an asset. Do something with it. Perhaps begin processing/upload?
+                print("User selected an asset")
+            }, deselect: { (asset) in
+                print("User deselected an asset")
+            }, cancel: { (assets) in
+                // User canceled selection.
+                print("User canceled selection.")
+            }, finish: { (assets) in
+                
+                if assets.count > 0 {
+                    
+                    let options = PHImageRequestOptions()
+                    options.isSynchronous = true
+                    
+                       assets.forEach { (asset) in
+                        
+                           PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: options) { (image, info) in
+
+                               let resize = CGSize(width: 1024, height: 768)
+                               NetworkManager.shared.uploadImage(url: "/meme/single", image!, resize: resize) { (meme) in
+                                   if let returnedMeme = meme {
+
+                                       self.memesArray.insert(returnedMeme, at: 0)
+
+                                       self.total = self.total! + 1
+
+                                       self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+
+                                   } else {
+                                       self.present(Helper.shared.showInfoAlert(title: "Ooops...", message: "Что-то пошло не так и мем не загрузился")!, animated: true, completion: nil)
+                                   }
+                               }
+
+                           }
+                       }
+                }
+                
+            })
         }
         
         let jokeAction = UIAlertAction(title: "Каламбур", style: .default) { (action) in
@@ -181,44 +253,28 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postsArray.count
+        return memesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let post = postsArray[indexPath.row]
-        
+                
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellReuseIdentifier, for: indexPath) as! SingleMemeCollectionViewCell
-    
-        if post.type == PostType.Single {
-
-            let singleMeme = post.memes![0]
-
-            guard let memeImageURL = URL(string: singleMeme.imageName!) else {return cell}
-
-            cell.memeImageView.sd_setImage(with: memeImageURL, placeholderImage: #imageLiteral(resourceName: "ice-cream-placeholder"), options: .forceTransition) { (image, error, cache, url) in
-                if error != nil {
-                    print(error?.localizedDescription as Any)
-                }
-            }
-
-        }
-                        
+        
+        let meme = memesArray[indexPath.row]
+        
+        guard let memeImageURL = URL(string: "\(meme.imageName ?? "")") else {return cell}
+        
+        cell.memeImageView.sd_setImage(with: memeImageURL, placeholderImage: #imageLiteral(resourceName: "icecream"), options: .continueInBackground)
+                    
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToPostViewController" {
-            if selectedPost != nil && selectedMemeImage != nil {
-                let postViewController = segue.destination as! PostViewController
-                postViewController.memeImage = selectedMemeImage!
-                postViewController.post = selectedPost!
-            }
+            let postViewController = segue.destination as! PostViewController
+            postViewController.memeImage = selectedMemeImage
+            postViewController.user = user
         }
     }
     
@@ -227,20 +283,17 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         collectionView.deselectItem(at: indexPath, animated: true)
                 
         selectedMemeImage = (collectionView.cellForItem(at: indexPath) as! SingleMemeCollectionViewCell).memeImageView.image
-        selectedPost = postsArray[indexPath.row]
         
         performSegue(withIdentifier: "SegueToPostViewController", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row > postsArray.count - 5 {
-            if postsArray.count < total! {
-                page = page + 1
-                getUserPosts(userID: user?.id)
-            } else {
-                print("All posts loaded")
-            }
-        }
+        if indexPath.row > memesArray.count - 10 {
+             if memesArray.count < total! {
+                 page = page + 1
+                 getUserMemes()
+             }
+         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -250,6 +303,15 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellReuseIdentifier, for: indexPath) as! ProfileHeaderCollectionViewCell
             
             let currentUserID = UserDefaults.standard.value(forKey: "user_id") as! Int
+            
+            headerCell.totalLabel.text = "\(total ?? 0)"
+            
+            headerCell.subscriptionsCountLabel.text = "\(subscriptionsCount)"
+            
+            let subsctiptionsTapGesture = UITapGestureRecognizer(target: self, action: #selector(actionShowSubscriptions))
+            
+            headerCell.subscriptionsCountLabel.addGestureRecognizer(subsctiptionsTapGesture)
+            headerCell.subscriptionsLabel.addGestureRecognizer(subsctiptionsTapGesture)
             
             if user?.id == currentUserID {
                 headerCell.subscribeButton.isHidden = true
@@ -261,7 +323,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
 
             headerCell.fullNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")\n\(user?.about ?? "")"
-
+                        
             guard let avatarURL = URL(string: user?.avatar ?? "") else {return headerCell}
 
             headerCell.avatarImageView.sd_setImage(with: avatarURL, placeholderImage: #imageLiteral(resourceName: "baby"), options: .highPriority) { (image, error, cache, url) in
@@ -273,6 +335,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionReusableView()
         }
 
+    }
+    
+    @objc func actionShowSubscriptions() {
+        if let userID = self.userID {
+            let subscriptionsViewController = storyboard?.instantiateViewController(withIdentifier: "SubscriptionsViewController") as! SubscriptionsViewController
+            subscriptionsViewController.userID = userID
+            navigationController?.pushViewController(subscriptionsViewController, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -288,25 +358,3 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
-
-        NetworkManager.shared.uploadImage(url: "/meme/single", image, resize: CGSize(width: 1024, height: 769)) { (newPost) in
-            picker.dismiss(animated: true) {
-                if let post = newPost {
-                    
-                    print(post)
-                                        
-                    self.postsArray.insert(post, at: 0)
-                    
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    
-                    self.collectionView.insertItems(at: [indexPath])
-                                                            
-                }
-            }
-        }
-    }
-}

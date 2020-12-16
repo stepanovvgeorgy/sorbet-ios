@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate let jokeEditingLastTextUserDefaultsKey = "joke_editor_last_editing_text"
 
-class JokeEditorViewController: UIViewController {
+class JokeEditorViewController: SorbetViewController {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var publishBarButtonItem: UIBarButtonItem!
@@ -40,7 +40,11 @@ class JokeEditorViewController: UIViewController {
     }
     
     @IBAction func actionPublish(_ sender: UIBarButtonItem) {
-        print("publishing!")
+        sendPost()
+    }
+    
+    func sendPost() {
+        print("sendPost")
     }
 }
 

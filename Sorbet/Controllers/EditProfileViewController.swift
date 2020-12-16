@@ -11,7 +11,7 @@ import UIKit
 fileprivate let textFieldCellReuseIdentifier = "TextFieldCell"
 fileprivate let changeAvatarCellReuseIdentifier = "ChangeAvatarCell"
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: SorbetViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -52,6 +52,7 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func actionSave(_ sender: UIBarButtonItem) {
         updateUserProfile()
+        dismiss(animated: true)
     }
     
     func updateUserProfile() {
@@ -66,7 +67,7 @@ class EditProfileViewController: UIViewController {
     }
     
     func sendNotificationUserProfileUpdated() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "NotificationUserProfileUpdated"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: SorbetNotifications.userProfileUpdated.rawValue), object: nil)
     }
 }
 
@@ -81,6 +82,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: textFieldCellReuseIdentifier) as! TextFieldTableViewCell
         
         cell.textField.borderBottom(height: 1.5, color: #colorLiteral(red: 0.9791200757, green: 0.7600466609, blue: 0, alpha: 1))
+        cell.textField.delegate = self
         
         if indexPath.row == 0 {
             firstNameTextField = cell.textField
@@ -97,6 +99,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         } else if indexPath.row == 3 {
             usernameTextField = cell.textField
             cell.textFieldLabel.text = "Username"
+            cell.textField.autocorrectionType = .no
             cell.textField.text = user?.username
         }
         return cell
@@ -145,10 +148,19 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
         
-        NetworkManager.shared.uploadImage(url: "/avatar/upload", image, resize: CGSize(width: 80, height: 80), compressionQuality: 0.1) {_ in 
+        NetworkManager.shared.uploadImage(url: "/avatar/upload", image, resize: CGSize(width: 100, height: 100), compressionQuality: 0) { _ in
             self.sendNotificationUserProfileUpdated()
             self.imageFromPicker = image
             picker.dismiss(animated: true, completion: nil)
         }
+
+    }
+}
+
+extension EditProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        updateUserProfile()
+        textField.resignFirstResponder()
+        return true
     }
 }

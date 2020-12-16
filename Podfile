@@ -10,4 +10,6 @@ target 'Sorbet' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SDWebImage', '~> 5.0'
   pod 'Koloda', '~> 5.0'
+  pod "BSImagePicker", "~> 3.1"
+
 end

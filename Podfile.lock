@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.0.0)
+  - BSImagePicker (3.2.0)
   - Koloda (5.0.1):
     - pop (~> 1.0)
   - pop (1.0.12)
@@ -10,6 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
+  - BSImagePicker (~> 3.1)
   - Koloda (~> 5.0)
   - SDWebImage (~> 5.0)
   - SwiftyJSON (~> 4.0)
@@ -17,6 +19,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - BSImagePicker
     - Koloda
     - pop
     - SDWebImage
@@ -24,11 +27,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 58ff2bfb8daaacaa233d5c36e37b10a5248f59b1
+  BSImagePicker: 1c0d14fa6f1b55380cd49cbebe47584f10e180c6
   Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 4403f00344fe85c6293852ffb46e948931de857d
+PODFILE CHECKSUM: c94e6a31059f75f5dace9bb8f8f4ebd5278a1eab
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

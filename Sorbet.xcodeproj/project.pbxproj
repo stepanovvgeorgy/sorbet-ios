@@ -22,6 +22,7 @@
 		D32397512485CD6600CD4A57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397502485CD6600CD4A57 /* User.swift */; };
 		D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397522485DDED00CD4A57 /* InnerTabBarController.swift */; };
 		D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32397542487022900CD4A57 /* ProfileViewController.swift */; };
+		D3355B5D24B75E2E00D61664 /* SorbetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3355B5C24B75E2E00D61664 /* SorbetButton.swift */; };
 		D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */; };
 		D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */; };
 		D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */; };
@@ -32,11 +33,16 @@
 		D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE54E2487D942003C4499 /* TextFieldTableViewCell.swift */; };
 		D33BE5512487EB06003C4499 /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE5502487EB06003C4499 /* ImageHandler.swift */; };
 		D33BE553248807ED003C4499 /* UIActivityIndicatorView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */; };
-		D33BE55524885DDE003C4499 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55424885DDE003C4499 /* NewPostViewController.swift */; };
 		D33BE55824885F28003C4499 /* NewPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */; };
 		D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */; };
-		D33BE55B24887456003C4499 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55A24887456003C4499 /* Post.swift */; };
 		D33BE55D24887494003C4499 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BE55C24887494003C4499 /* Meme.swift */; };
+		D363B44F24A33B8600998283 /* KolodaOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D363B44E24A33B8600998283 /* KolodaOverlayView.xib */; };
+		D363B45124A33BB800998283 /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D363B45024A33BB800998283 /* KolodaOverlayView.swift */; };
+		D363B45324A4B47900998283 /* KolodaViewCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = D363B45224A4B47900998283 /* KolodaViewCard.xib */; };
+		D363B45524A4B4DE00998283 /* KolodaViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D363B45424A4B4DE00998283 /* KolodaViewCard.swift */; };
+		D373DF3B24AF48E200B3BC68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373DF3A24AF48E200B3BC68 /* SearchViewController.swift */; };
+		D373DF3E24AF4CE200B3BC68 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373DF3C24AF4CE200B3BC68 /* UserTableViewCell.swift */; };
+		D373DF3F24AF4CE200B3BC68 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D373DF3D24AF4CE200B3BC68 /* UserTableViewCell.xib */; };
 		D3785AF8248B14E60070B2BA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AF7248B14E60070B2BA /* PostViewController.swift */; };
 		D3785AFB248B19830070B2BA /* PostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */; };
 		D3785AFC248B19830070B2BA /* PostHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */; };
@@ -45,6 +51,9 @@
 		D3785B03248B246F0070B2BA /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */; };
 		D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */; };
 		D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */; };
+		D3871EB224AB6902008B047B /* SorbetNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB124AB6902008B047B /* SorbetNotifications.swift */; };
+		D3871EB424AB72E8008B047B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB324AB72E8008B047B /* SubscriptionsViewController.swift */; };
+		D3871EB624ACAE13008B047B /* SorbetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3871EB524ACAE13008B047B /* SorbetViewController.swift */; };
 		D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */; };
 		D3F27F61249D07310077897D /* JokeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F27F60249D07310077897D /* JokeEditorViewController.swift */; };
 		F890539547F7741415A460B7 /* Pods_Sorbet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BCB6B5F4B0B7311C601B26 /* Pods_Sorbet.framework */; };
@@ -71,6 +80,7 @@
 		D32397502485CD6600CD4A57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D32397522485DDED00CD4A57 /* InnerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerTabBarController.swift; sourceTree = "<group>"; };
 		D32397542487022900CD4A57 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D3355B5C24B75E2E00D61664 /* SorbetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetButton.swift; sourceTree = "<group>"; };
 		D33BE53C248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33BE53D248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		D33BE54124871DD0003C4499 /* SingleMemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMemeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -81,11 +91,16 @@
 		D33BE54E2487D942003C4499 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		D33BE5502487EB06003C4499 /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
 		D33BE552248807ED003C4499 /* UIActivityIndicatorView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extension.swift"; sourceTree = "<group>"; };
-		D33BE55424885DDE003C4499 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		D33BE55624885F28003C4499 /* NewPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33BE55724885F28003C4499 /* NewPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostCollectionViewCell.xib; sourceTree = "<group>"; };
-		D33BE55A24887456003C4499 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D33BE55C24887494003C4499 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		D363B44E24A33B8600998283 /* KolodaOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KolodaOverlayView.xib; sourceTree = "<group>"; };
+		D363B45024A33BB800998283 /* KolodaOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodaOverlayView.swift; sourceTree = "<group>"; };
+		D363B45224A4B47900998283 /* KolodaViewCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KolodaViewCard.xib; sourceTree = "<group>"; };
+		D363B45424A4B4DE00998283 /* KolodaViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodaViewCard.swift; sourceTree = "<group>"; };
+		D373DF3A24AF48E200B3BC68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D373DF3C24AF4CE200B3BC68 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		D373DF3D24AF4CE200B3BC68 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		D3785AF7248B14E60070B2BA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D3785AF9248B19830070B2BA /* PostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D3785AFA248B19830070B2BA /* PostHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -94,6 +109,9 @@
 		D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		D3785B05248BBB810070B2BA /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		D3871EB124AB6902008B047B /* SorbetNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetNotifications.swift; sourceTree = "<group>"; };
+		D3871EB324AB72E8008B047B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
+		D3871EB524ACAE13008B047B /* SorbetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorbetViewController.swift; sourceTree = "<group>"; };
 		D3E1C15E24990ADC00DF6420 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D3F27F60249D07310077897D /* JokeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +171,8 @@
 				D32397462484E56700CD4A57 /* NetworkManager.swift */,
 				D323974A2484E97600CD4A57 /* Helper.swift */,
 				D33BE5502487EB06003C4499 /* ImageHandler.swift */,
+				D3871EB124AB6902008B047B /* SorbetNotifications.swift */,
+				D3355B5C24B75E2E00D61664 /* SorbetButton.swift */,
 				D33BE540248717EE003C4499 /* Cells */,
 				D323974E2485CD1200CD4A57 /* Views */,
 				D323974D2485CD0B00CD4A57 /* Models */,
@@ -174,9 +194,13 @@
 				D32397522485DDED00CD4A57 /* InnerTabBarController.swift */,
 				D32397542487022900CD4A57 /* ProfileViewController.swift */,
 				D33BE54A2487D765003C4499 /* EditProfileViewController.swift */,
-				D33BE55424885DDE003C4499 /* NewPostViewController.swift */,
 				D3785AF7248B14E60070B2BA /* PostViewController.swift */,
 				D3F27F60249D07310077897D /* JokeEditorViewController.swift */,
+				D363B45024A33BB800998283 /* KolodaOverlayView.swift */,
+				D363B45424A4B4DE00998283 /* KolodaViewCard.swift */,
+				D3871EB324AB72E8008B047B /* SubscriptionsViewController.swift */,
+				D3871EB524ACAE13008B047B /* SorbetViewController.swift */,
+				D373DF3A24AF48E200B3BC68 /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				D32397502485CD6600CD4A57 /* User.swift */,
-				D33BE55A24887456003C4499 /* Post.swift */,
 				D33BE55C24887494003C4499 /* Meme.swift */,
 			);
 			path = Models;
@@ -196,6 +219,8 @@
 			children = (
 				D3239730248454C300CD4A57 /* Main.storyboard */,
 				D3239735248454C500CD4A57 /* LaunchScreen.storyboard */,
+				D363B44E24A33B8600998283 /* KolodaOverlayView.xib */,
+				D363B45224A4B47900998283 /* KolodaViewCard.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,6 +254,8 @@
 				D3785AFE248B1CDE0070B2BA /* PostMemeTableViewCell.xib */,
 				D3785B01248B246F0070B2BA /* CommentTableViewCell.swift */,
 				D3785B02248B246F0070B2BA /* CommentTableViewCell.xib */,
+				D373DF3C24AF4CE200B3BC68 /* UserTableViewCell.swift */,
+				D373DF3D24AF4CE200B3BC68 /* UserTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -294,12 +321,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3239737248454C500CD4A57 /* LaunchScreen.storyboard in Resources */,
+				D363B45324A4B47900998283 /* KolodaViewCard.xib in Resources */,
 				D3785AFC248B19830070B2BA /* PostHeaderTableViewCell.xib in Resources */,
 				D33BE55924885F28003C4499 /* NewPostCollectionViewCell.xib in Resources */,
+				D373DF3F24AF4CE200B3BC68 /* UserTableViewCell.xib in Resources */,
 				D33BE53F248717AA003C4499 /* ProfileHeaderCollectionViewCell.xib in Resources */,
 				D3239734248454C500CD4A57 /* Assets.xcassets in Resources */,
 				D3239732248454C300CD4A57 /* Main.storyboard in Resources */,
 				D33BE54424871DD0003C4499 /* SingleMemeCollectionViewCell.xib in Resources */,
+				D363B44F24A33B8600998283 /* KolodaOverlayView.xib in Resources */,
 				D3785B04248B246F0070B2BA /* CommentTableViewCell.xib in Resources */,
 				D3785B00248B1CDE0070B2BA /* PostMemeTableViewCell.xib in Resources */,
 			);
@@ -361,28 +391,34 @@
 				D3785AFB248B19830070B2BA /* PostHeaderTableViewCell.swift in Sources */,
 				D3785AF8248B14E60070B2BA /* PostViewController.swift in Sources */,
 				D32397532485DDED00CD4A57 /* InnerTabBarController.swift in Sources */,
+				D363B45524A4B4DE00998283 /* KolodaViewCard.swift in Sources */,
 				D32397412484669D00CD4A57 /* SignUpTableViewController.swift in Sources */,
 				D323972F248454C300CD4A57 /* SignInViewController.swift in Sources */,
 				D32397472484E56700CD4A57 /* NetworkManager.swift in Sources */,
 				D323973F2484603C00CD4A57 /* UITextField+Extension.swift in Sources */,
 				D3785B03248B246F0070B2BA /* CommentTableViewCell.swift in Sources */,
+				D3355B5D24B75E2E00D61664 /* SorbetButton.swift in Sources */,
+				D3871EB624ACAE13008B047B /* SorbetViewController.swift in Sources */,
 				D33BE55D24887494003C4499 /* Meme.swift in Sources */,
+				D373DF3B24AF48E200B3BC68 /* SearchViewController.swift in Sources */,
 				D32397552487022900CD4A57 /* ProfileViewController.swift in Sources */,
 				D3785B06248BBB810070B2BA /* UIImageView+Extension.swift in Sources */,
 				D323974B2484E97600CD4A57 /* Helper.swift in Sources */,
 				D33BE5512487EB06003C4499 /* ImageHandler.swift in Sources */,
 				D3F27F61249D07310077897D /* JokeEditorViewController.swift in Sources */,
-				D33BE55B24887456003C4499 /* Post.swift in Sources */,
 				D3785AFF248B1CDE0070B2BA /* PostMemeTableViewCell.swift in Sources */,
 				D32397492484E7EA00CD4A57 /* SorbetKolodaView.swift in Sources */,
 				D33BE5492487D007003C4499 /* UIColor+Extension.swift in Sources */,
 				D323972B248454C300CD4A57 /* AppDelegate.swift in Sources */,
 				D33BE54D2487D925003C4499 /* ChangeAvatarTableViewCell.swift in Sources */,
+				D3871EB424AB72E8008B047B /* SubscriptionsViewController.swift in Sources */,
 				D33BE54324871DD0003C4499 /* SingleMemeCollectionViewCell.swift in Sources */,
+				D373DF3E24AF4CE200B3BC68 /* UserTableViewCell.swift in Sources */,
 				D32397512485CD6600CD4A57 /* User.swift in Sources */,
-				D33BE55524885DDE003C4499 /* NewPostViewController.swift in Sources */,
+				D363B45124A33BB800998283 /* KolodaOverlayView.swift in Sources */,
 				D33BE54F2487D942003C4499 /* TextFieldTableViewCell.swift in Sources */,
 				D3E1C15F24990ADC00DF6420 /* UIImage+Extension.swift in Sources */,
+				D3871EB224AB6902008B047B /* SorbetNotifications.swift in Sources */,
 				D323972D248454C300CD4A57 /* SceneDelegate.swift in Sources */,
 				D33BE53E248717AA003C4499 /* ProfileHeaderCollectionViewCell.swift in Sources */,
 			);

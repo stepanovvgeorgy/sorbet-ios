@@ -12,13 +12,12 @@ fileprivate let postHeaderReuseIdentifier = "PostHeaderCell"
 fileprivate let postMemeReuseIdentifier = "PostMemeCell"
 fileprivate let postCommentReuseIdentifier = "PostCommentCell"
 
-class PostViewController: UIViewController {
+class PostViewController: SorbetViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentFormView: UIView!
     @IBOutlet weak var commentFormViewBottomConstraint: NSLayoutConstraint!
     
-    var post: Post?
     var user: User?
     var memeImage: UIImage?
     
@@ -28,8 +27,10 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 60
-                
-        tableView.register(UINib(nibName: "PostHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: postHeaderReuseIdentifier)
+        
+        let postHeaderTableViewCell = UINib(nibName: "PostHeaderTableViewCell", bundle: nil)
+        
+        tableView.register(postHeaderTableViewCell, forCellReuseIdentifier: postHeaderReuseIdentifier)
         
         tableView.register(UINib(nibName: "PostMemeTableViewCell", bundle: nil), forCellReuseIdentifier: postMemeReuseIdentifier)
         
@@ -42,6 +43,19 @@ class PostViewController: UIViewController {
         setTableViewBottomInsets(commentFormView.frame.height)
 
         keyboardNotification()
+        
+        let postHeaderView = postHeaderTableViewCell.instantiate(withOwner: nil, options: nil)[0] as? PostHeaderTableViewCell
+        
+        postHeaderView?.fullNameLabel.text = "@" + (user?.username)!
+        
+        guard let avatarURL = URL(string: (user?.avatar)!) else {return}
+        
+        postHeaderView?.avatarImageView.sd_setImage(with: avatarURL, placeholderImage: #imageLiteral(resourceName: "baby"))
+        
+        
+        navigationItem.titleView = postHeaderView?.contentView
+        
+        
         
         // in the future
         commentFormView.isHidden = true

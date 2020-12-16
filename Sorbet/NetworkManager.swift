@@ -10,13 +10,17 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+fileprivate let networkProtocol = "http"
+fileprivate let networkHost = "localhost"
+fileprivate let networkPort = "4400"
+
 class NetworkManager {
     
     static let shared: NetworkManager = NetworkManager()
     
-    let serverUrl = "http://localhost:4400/api"
-    let uploadsUrl = "http://localhost:4400/uploads"
-    let avatarsUrl = "http://localhost:4400/avatars"
+    let serverUrl = "\(networkProtocol)://\(networkHost):\(networkPort)/api"
+    let uploadsUrl = "\(networkProtocol)://\(networkHost):\(networkPort)/uploads"
+    let avatarsUrl = "\(networkProtocol)://\(networkHost):\(networkPort)/avatars"
     
     var headers: HTTPHeaders {
         get {
@@ -28,12 +32,12 @@ class NetworkManager {
     
     var headersWithToken: HTTPHeaders {
         get {
-            let headersDict: [String: String] = [
+            let headersDictionary: [String: String] = [
                 "Content-Type": "application/json",
                 "token": UserDefaults.standard.value(forKey: "token") as! String
             ]
             
-            let headers = HTTPHeaders(headersDict)
+            let headers = HTTPHeaders(headersDictionary)
             
             return headers
         }
@@ -73,11 +77,9 @@ class NetworkManager {
         
         if let user = user {
             let parameters: [String: Any] = [
-                "avatar": user.avatar as Any,
                 "email": user.email as Any,
-                "password": user.password as Any,
-                "first_name": user.firstName as Any,
-                "last_name": user.lastName as Any
+                "username": user.username as Any,
+                "password": user.password as Any
             ]
             
             AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON { (response) in
@@ -100,7 +102,7 @@ class NetworkManager {
     }
     
     func getUserByID(_ id: Int?, _ completion: @escaping (_ user: User?) -> (), _ failure: @escaping (_ error: String) -> ()) {
-     
+        
         if let userID = id {
             
             guard let url = URL(string: "\(serverUrl)/user/\(userID)") else {return}
@@ -110,22 +112,20 @@ class NetworkManager {
                 switch response.result {
                 case .success(let value):
                     let jsonData = JSON(value)
-                    
-                    print(jsonData)
-                    
+                                        
                     if response.response?.statusCode == 200 {
-      
+                        
                         let user = User(id: jsonData["id"].intValue,
                                         token: nil,
                                         username: jsonData["username"].stringValue,
                                         rating: jsonData["rating"].intValue,
                                         expiredDate: nil,
                                         avatar: "\(self.avatarsUrl)/\(jsonData["avatar"].stringValue)",
-                                        firstName: jsonData["first_name"].stringValue,
-                                        lastName: jsonData["last_name"].stringValue,
-                                        about: jsonData["about"].stringValue,
-                                        password: nil,
-                                        email: nil)
+                            firstName: jsonData["first_name"].stringValue,
+                            lastName: jsonData["last_name"].stringValue,
+                            about: jsonData["about"].stringValue,
+                            password: nil,
+                            email: nil)
                         
                         completion(user)
                         
@@ -142,7 +142,33 @@ class NetworkManager {
         }
     }
     
-    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping (_ post: Post?) -> ()) {
+    func updateUserProfile(user: User?, _ completion: @escaping () -> ()) {
+        if user != nil {
+            guard let url = URL(string: "\(serverUrl)/user/profile/update") else {return}
+            
+            let parameters: [String: Any] = [
+                "username": user?.username as Any,
+                "first_name": user?.firstName as Any,
+                "last_name": user?.lastName as Any,
+                "about": user?.about as Any
+            ]
+            
+            AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(_):
+                                                            
+                    if response.response?.statusCode == 200 {
+                        completion()
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func uploadImage(url: String, _ image: UIImage, resize: CGSize?, compressionQuality: CGFloat? = 0.9, _ completion: @escaping (_ meme: Meme?) -> ()) {
         
         let croppedImage = ImageHandler.shared.resizeImage(image: image, targetSize: resize ?? CGSize(width: 320, height: 240))
         
@@ -158,129 +184,224 @@ class NetworkManager {
         }, to: "\(serverUrl)\(url)", method: .post).response { result in
             
             let jsonData = JSON(result.data as Any)
-                        
-            var memesArray = Array<Meme>()
             
-            jsonData["Memes"].array?.forEach({ (item) in
-                let meme = Meme(id: item["id"].intValue,
-                                imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
-                                postID: item["PostId"].intValue)
-                memesArray.append(meme)
-            })
+            let memeImageURL = "\(self.uploadsUrl)/\(jsonData["image_name"].stringValue)"
             
-            let user = User(id: jsonData["User"]["id"].intValue,
-                            token: nil,
-                            username: jsonData["User"]["username"].stringValue,
-                            rating: jsonData["User"]["rating"].intValue,
-                            expiredDate: nil,
-                            avatar: "\(self.avatarsUrl)/\(jsonData["User"]["avatar"].stringValue)",
-                            firstName: jsonData["User"]["first_name"].stringValue,
-                            lastName: jsonData["User"]["first_name"].stringValue,
-                            about: jsonData["User"]["about"].stringValue,
-                            password: nil,
-                            email: nil)
+            let meme = Meme(id: jsonData["id"].intValue, imageName: memeImageURL, userID: jsonData["UserId"].intValue, user: nil)
             
-            let post = Post(id: jsonData["id"].intValue, type: PostType(rawValue: jsonData["type"].intValue), text: jsonData["text"].stringValue, userID: jsonData["UserId"].intValue, memes: memesArray, user: user)
-                        
-            completion(post)
+            completion(meme)
         }
     }
     
-    func updateUserProfile(user: User?, _ completion: @escaping () -> ()) {
-        if user != nil {
-            guard let url = URL(string: "\(serverUrl)/user/profile/update") else {return}
+    func getMemesByUserID(_ id: Int?, page: Int, limit: Int, _ completion: @escaping (_ memes: [Meme], _ total: Int) -> ()) {
+        if let userID = id {
             
-            let parameters: [String: Any] = [
-                "username": user?.username as Any,
-                "first_name": user?.firstName as Any,
-                "last_name": user?.lastName as Any,
-                "about": user?.about as Any
-            ]
+            guard let url = URL(string: "\(serverUrl)/meme/user/\(userID)?page=\(page)&limit=\(limit)") else {return}
             
-            AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
-                  switch response.result {
-                  case .success(let value):
-                    
-                      let jsonData = JSON(value)
-                      
-                      print(jsonData)
-
-                      if response.response?.statusCode == 200 {
-                        print("Data was update")
-                        completion()
-                      }
-                      
-                  case .failure(let error):
-                      print(error.localizedDescription)
-                  }
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                
+                switch response.result {
+                case .success(let value):
+                    if response.response?.statusCode == 200 {
+                        
+                        let jsonData = JSON(value)
+                        
+                        let total = Int((response.response?.headers["total"])!)
+                        
+                        var memesArray: [Meme] = Array()
+                        
+                        jsonData.array!.forEach({ (item) in
+                            
+                            let user = User(id: item["UserId"].intValue,
+                                            token: nil,
+                                            username: item["User"]["username"].stringValue,
+                                            rating: item["User"]["rating"].intValue,
+                                            expiredDate: nil,
+                                            avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
+                                firstName: item["User"]["first_name"].stringValue,
+                                lastName: item["User"]["last_name"].stringValue,
+                                about: nil,
+                                password: nil,
+                                email: nil)
+                            
+                            let meme = Meme(id: item["id"].intValue,
+                                            imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
+                                userID: item["UserId"].intValue, user: user)
+                            memesArray.append(meme)
+                        })
+                        
+                        completion(memesArray, total!)
+                        
+                    } else {
+                        print("Something went wrong")
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
     
-    func getUserPostsByID(_ userID: Int, page: Int, limit: Int, _ completion: @escaping (_ posts: [Post], _ total: String) -> ()) {
+    func getAllMemes(page: Int, limit: Int, _ completion: @escaping (_ memes: [Meme], _ total: Int) -> ()) {
         
-        guard let url = URL(string: "\(NetworkManager.shared.serverUrl)/posts/\(userID)?page=\(page)&limit=\(limit)") else {
-            return
-        }
+        guard let url = URL(string: "\(serverUrl)/meme/all?page=\(page)&limit=\(limit)") else {return}
         
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                
-                let jsonData = JSON(value)
-                
                 if response.response?.statusCode == 200 {
                     
-                    var posts = Array<Post>()
-                    let totalCount = response.response?.headers["total"]
-
-                    jsonData.array!.forEach { (item) in
-        
+                    let jsonData = JSON(value)
+                    
+                    let total = Int((response.response?.headers["total"])!)
+                    
+                    var memesArray: [Meme] = Array()
+                    
+                    jsonData.array!.forEach({ (item) in
                         
-                        var memesArray = Array<Meme>()
-                        
-                        item["Memes"].array!.forEach { (memeItem) in
-                            let meme = Meme(id: memeItem["id"].intValue,
-                                            imageName: "\(self.uploadsUrl)/\(memeItem["image_name"].stringValue)",
-                                            postID: memeItem["PostId"].intValue)
-                            memesArray.append(meme)
-                        }
-                        
-                        let user = User(id: item["User"]["id"].intValue,
+                        let user = User(id: item["UserId"].intValue,
                                         token: nil,
                                         username: item["User"]["username"].stringValue,
                                         rating: item["User"]["rating"].intValue,
                                         expiredDate: nil,
                                         avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
-                                        firstName: item["User"]["first_name"].stringValue,
-                                        lastName: item["User"]["first_name"].stringValue,
-                                        about: item["User"]["about"].stringValue,
-                                        password: nil,
-                                        email: nil)
-
-                        let post = Post(id: item["id"].intValue,
-                                        type: PostType(rawValue: item["type"].intValue),
-                                        text: item["text"].stringValue,
-                                        userID: item["UserId"].intValue,
-                                        memes: memesArray,
-                                        user: user)
+                            firstName: item["User"]["first_name"].stringValue,
+                            lastName: item["User"]["last_name"].stringValue,
+                            about: nil,
+                            password: nil,
+                            email: nil)
                         
-                        
-                        posts.append(post)
-                    }
+                        let meme = Meme(id: item["id"].intValue,
+                                        imageName: "\(self.uploadsUrl)/\(item["image_name"].stringValue)",
+                            userID: item["UserId"].intValue,
+                            user: user)
+                        memesArray.append(meme)
+                    })
                     
-                    print(posts)
-                    
-                    completion(posts, totalCount!)
+                    completion(memesArray, total!)
                     
                 } else {
-                    print(jsonData)
+                    print(value as Any)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-        
     }
     
+    func searchUserByUsername(_ username: String?, _ completion: @escaping ([User]) -> (), _ failure: @escaping () -> ()) {
+        
+        if username != nil {
+            
+            guard let url = URL(string: "\(serverUrl)/user/search") else {return}
+            
+            let parameters: [String: String] = [
+                "username": username!
+            ]
+            
+            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    if response.response?.statusCode == 200 {
+                        
+                        var users: [User] = []
+                        
+                        let jsonData = JSON(value)
+                        
+                        jsonData.array!.forEach { (item) in
+                            let user = User(id: item["id"].intValue,
+                                            token: nil,
+                                            username: item["username"].stringValue,
+                                            rating: nil, expiredDate: nil,
+                                            avatar: "\(self.avatarsUrl)/\(item["avatar"].stringValue)",
+                                firstName: nil,
+                                lastName: nil,
+                                about: nil,
+                                password: nil,
+                                email: nil)
+                            users.append(user)
+                        }
+                        
+                        completion(users)
+                        
+                    }
+                    
+                case .failure(let error):
+                    failure()
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func getSubscriptionsByUserID(_ id: Int?, page: Int = 1, limit: Int = 15, completion: @escaping (_ users: [User], _ total: Int?) -> (), failure: @escaping (_ error: Any?) -> ()) {
+        if let userID = id {
+            
+            guard let url = URL(string: "\(serverUrl)/subscriptions/\(userID)?page=\(page)&limit=\(limit)") else {return}
+                        
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(let data):
+                    
+                    let jsonData = JSON(data)
+                    
+                    if response.response?.statusCode == 200 {
+                        
+                        var users = [User]()
+                        
+                        jsonData.array!.forEach { (item) in
+                            let user = User(id: item["User"]["id"].intValue,
+                                            token: nil,
+                                            username: item["User"]["username"].stringValue,
+                                            rating: nil,
+                                            expiredDate: nil,
+                                            avatar: "\(self.avatarsUrl)/\(item["User"]["avatar"].stringValue)",
+                                            firstName: nil,
+                                            lastName: nil,
+                                            about: nil,
+                                            password: nil,
+                                            email: nil)
+                            users.append(user)
+                        }
+                        
+                        let total = Int((response.response?.headers["total"])!)
+                        
+                        completion(users, total)
+                        
+                    } else {
+                        print(jsonData)
+                        failure(jsonData)
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    failure(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func getSubscriptionsCountByUserID(_ id: Int?, _ completion: @escaping (_ count: Int?) -> ()) {
+        if let userID = id {
+            
+            guard let url = URL(string: "\(serverUrl)/subscriptions/count/\(userID)") else {return}
+            
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headersWithToken).validate().responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let jsonData = JSON(value)
+                    
+                    if response.response?.statusCode == 200 {
+                        completion(jsonData["count"].intValue)
+                    } else {
+                        print(jsonData)
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

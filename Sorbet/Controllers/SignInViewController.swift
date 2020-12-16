@@ -20,6 +20,9 @@ class SignInViewController: UIViewController {
         emailTextField.becomeFirstResponder()
         emailTextField.borderBottom(height: 2)
         passwordTextFeild.borderBottom(height: 2)
+        
+        navigationController?.navigationBar.barStyle = .default
+
     }
     
     @IBAction func actionSignIn(_ sender: Any) {
@@ -32,7 +35,7 @@ class SignInViewController: UIViewController {
             let password = passwordTextFeild.text,
             !email.isEmpty && !password.isEmpty {
             
-            let user = User(id: nil, token: nil, username: nil, rating: nil ,expiredDate: nil, avatar: nil, firstName: nil, lastName: nil, about: nil, password: password, email: email)
+            let user = User(id: nil, token: nil, username: email, rating: nil ,expiredDate: nil, avatar: nil, firstName: nil, lastName: nil, about: nil, password: password, email: email)
             
             NetworkManager.shared.signIn(user: user, { (userID, token) in
                 Helper.shared.authFinished(fromViewController: self, userID: userID, token: token)
